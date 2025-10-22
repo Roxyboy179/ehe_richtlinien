@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EHE Community Webseiten Studios - Richtlinien</title>
+    <title>EHE Community Studios - Richtlinien & Verhaltenskodex</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-blue: #007AFF;
+            --secondary-blue: #5AC8FA;
+            --accent-blue: #0A84FF;
+            --dark-bg: #000000;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.18);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --success: #32D74B;
+            --warning: #FFD60A;
+            --error: #FF453A;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0f0f0f 100%);
-            color: #e0e0e0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #001428 0%, #000814 50%, #001a35 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Animated Background */
@@ -29,101 +44,116 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.1) 0%, transparent 50%);
-            animation: backgroundMove 20s ease-in-out infinite;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(90, 200, 250, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(10, 132, 255, 0.08) 0%, transparent 50%);
+            animation: backgroundFloat 20s ease-in-out infinite;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
-        @keyframes backgroundMove {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.5; }
+        @keyframes backgroundFloat {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg);
+                opacity: 0.6;
+            }
         }
 
-        /* Navigation */
+        /* Glass Navigation */
         nav {
-            background: rgba(20, 20, 20, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            background: rgba(0, 8, 20, 0.7);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         nav.scrolled {
-            background: rgba(15, 15, 15, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 8, 20, 0.85);
+            box-shadow: 0 8px 32px rgba(0, 122, 255, 0.1);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
+        }
+
+        .nav-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
 
         .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #64b5f6;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-}
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
 
         .logo:hover {
-            color: #90caf9;
+            transform: scale(1.05);
+            filter: brightness(1.2);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-menu li a {
-            color: #e0e0e0;
+            color: var(--text-secondary);
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            background: transparent;
+            border: 1px solid transparent;
         }
 
         .nav-menu li a:hover {
-            background: rgba(100, 181, 246, 0.2);
-            color: #64b5f6;
+            background: rgba(0, 122, 255, 0.15);
+            color: var(--text-primary);
+            border-color: rgba(0, 122, 255, 0.3);
             transform: translateY(-2px);
         }
 
         .nav-menu li a.active {
-            background: rgba(100, 181, 246, 0.3);
-            color: #64b5f6;
+            background: rgba(0, 122, 255, 0.2);
+            color: var(--primary-blue);
+            border-color: rgba(0, 122, 255, 0.4);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.2);
         }
 
         /* Main Content */
         main {
-            margin-top: 120px;
+            margin-top: 140px;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .container {
@@ -133,83 +163,236 @@
 
         .section {
             display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
+            animation: fadeInUp 0.6s ease;
         }
 
         .section.active {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.15);
+            border-color: rgba(0, 122, 255, 0.3);
+        }
+
+        /* Section Header */
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(90, 200, 250, 0.05));
+            border-radius: 32px;
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            backdrop-filter: blur(40px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .section-header h1 {
-            font-size: 2.5rem;
-            color: #64b5f6;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-header p {
             font-size: 1.2rem;
-            color: #b0b0b0;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
         }
 
-        .content-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        /* Content Styling */
+        .glass-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.1);
+        .glass-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-blue);
+            margin: 1.5rem 0 1rem 0;
         }
 
-        .content-card h2 {
-            color: #64b5f6;
+        .glass-card p {
+            line-height: 1.8;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.05rem;
         }
 
-        .content-card h3 {
-            color: #90caf9;
-            margin-bottom: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .content-card ul {
+        .glass-card ul {
             margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .content-card li {
-            margin-bottom: 0.5rem;
-            color: #c0c0c0;
+        .glass-card li {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+            padding-left: 0.5rem;
         }
 
-        .content-card p {
-            line-height: 1.6;
-            color: #c0c0c0;
-            margin-bottom: 1rem;
+        .glass-card li::marker {
+            color: var(--primary-blue);
         }
 
-        /* Acceptance Modal */
+        /* Info Boxes */
+        .info-box {
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .warning-box {
+            background: rgba(255, 214, 10, 0.1);
+            border: 1px solid rgba(255, 214, 10, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+
+        .warning-box h4 {
+            color: var(--warning);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .error-box {
+            background: rgba(255, 69, 58, 0.1);
+            border: 1px solid rgba(255, 69, 58, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--error);
+        }
+
+        .error-box h4 {
+            color: var(--error);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .success-box {
+            background: rgba(50, 215, 75, 0.1);
+            border: 1px solid rgba(50, 215, 75, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--success);
+        }
+
+        .success-box h4 {
+            color: var(--success);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: white;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -218,159 +401,89 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-content {
-            background: rgba(20, 20, 20, 0.95);
+            background: rgba(0, 8, 20, 0.95);
+            backdrop-filter: blur(40px);
             margin: 5% auto;
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 122, 255, 0.3);
             width: 90%;
             max-width: 600px;
             text-align: center;
-            animation: modalSlideIn 0.5s ease;
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.2);
         }
 
-        @keyframes modalSlideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
         }
 
         .modal h2 {
-            color: #64b5f6;
-            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
         }
 
         .modal p {
-            color: #c0c0c0;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 0.5rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #64b5f6, #42a5f5);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #42a5f5, #1e88e5);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #c0c0c0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+        .modal ul {
+            text-align: left;
+            margin: 1.5rem 0;
         }
 
         /* Footer */
         footer {
-            background: rgba(20, 20, 20, 0.9);
-            padding: 2rem;
+            background: rgba(0, 8, 20, 0.9);
+            backdrop-filter: blur(40px);
+            padding: 3rem 2rem;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 3rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         footer p {
-            color: #888;
+            color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
 
         footer a {
-            color: #64b5f6;
+            color: var(--primary-blue);
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         footer a:hover {
-            color: #90caf9;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-menu {
-                justify-content: center;
-            }
-
-            .section-header h1 {
-                font-size: 2rem;
-            }
-
-            .content-card {
-                padding: 1.5rem;
-            }
-
-            main {
-                padding: 1rem;
-            }
-        }
-
-        /* Warning Box */
-        .warning-box {
-            background: rgba(255, 193, 7, 0.1);
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            border-radius: 10px;
-            padding: 1rem; margin-top: 3rem;
-            margin: 1rem 0;
-        }
-
-        .warning-box h4 {
-            color: #ffc107;
-            margin-bottom: 0.5rem;
-        }
-
-        .warning-box p {
-            color: #ffecb3;
-        }
-
-        /* Violation Levels */
-        .violation-level {
-            background: rgba(244, 67, 54, 0.1);
-            border-left: 4px solid #f44336;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .violation-level h4 {
-            color: #f44336;
-            margin-bottom: 0.5rem;
-        }
-
-        .violation-level p {
-            color: #ffcdd2;
+            color: var(--secondary-blue);
         }
 
         /* Notification System */
         .notification-container {
             position: fixed;
-            top: 100px;
+            top: 160px;
             right: 20px;
             z-index: 10001;
             max-width: 400px;
@@ -378,39 +491,21 @@
         }
 
         .notification {
-            background: rgba(20, 20, 20, 0.95);
-            border-radius: 12px;
-            padding: 1rem;
+            background: rgba(0, 8, 20, 0.95);
+            backdrop-filter: blur(40px);
+            border-radius: 16px;
+            padding: 1.2rem;
             margin-bottom: 1rem;
-            border-left: 4px solid #64b5f6;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             transform: translateX(450px);
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .notification.show {
             transform: translateX(0);
             opacity: 1;
-        }
-
-        .notification::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #64b5f6, transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         .notification-header {
@@ -421,23 +516,38 @@
         }
 
         .notification-title {
-            font-weight: bold;
-            color: #64b5f6;
+            font-weight: 600;
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
+        .notification.info .notification-title {
+            color: var(--primary-blue);
+        }
+
+        .notification.success .notification-title {
+            color: var(--success);
+        }
+
+        .notification.warning .notification-title {
+            color: var(--warning);
+        }
+
+        .notification.error .notification-title {
+            color: var(--error);
+        }
+
         .notification-close {
             background: none;
             border: none;
-            color: #888;
-            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
             cursor: pointer;
             padding: 0;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -447,402 +557,779 @@
 
         .notification-close:hover {
             background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .notification-body {
-            color: #c0c0c0;
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        .notification-time {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 0.5rem;
-        }
-
-        /* Notification Types */
-        .notification.success {
-            border-left-color: #4caf50;
-        }
-
-        .notification.success .notification-title {
-            color: #4caf50;
-        }
-
-        .notification.warning {
-            border-left-color: #ff9800;
-        }
-
-        .notification.warning .notification-title {
-            color: #ff9800;
-        }
-
-        .notification.error {
-            border-left-color: #f44336;
-        }
-
-        .notification.error .notification-title {
-            color: #f44336;
-        }
-
-        .notification.info {
-            border-left-color: #2196f3;
-        }
-
-        .notification.info .notification-title {
-            color: #2196f3;
-        }
-
-        /* Notification Icons */
-        .notification-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Progress Bar */
-        .notification-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: rgba(100, 181, 246, 0.3);
-            border-radius: 0 0 12px 12px;
-            overflow: hidden;
-        }
-
-        .notification-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #64b5f6, #42a5f5);
-            width: 100%;
-            transform: translateX(-100%);
-            animation: progressBar 5s linear forwards;
-        }
-
-        @keyframes progressBar {
-            to { transform: translateX(0); }
-        }
-
-        /* Notification Button */
-        .notification-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #64b5f6, #42a5f5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(100, 181, 246, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .notification-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(100, 181, 246, 0.6);
-        }
-
-        .notification-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Mobile Responsiveness */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .nav-menu {
+                gap: 0.3rem;
+            }
+
+            .nav-menu li a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            main {
+                padding: 1rem;
+                margin-top: 180px;
+            }
+
             .notification-container {
                 right: 10px;
                 left: 10px;
                 max-width: none;
             }
+        }
 
-            .notification {
-                transform: translateY(-100px);
-            }
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #001428 0%, #000814 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
 
-            .notification.show {
-                transform: translateY(0);
-            }
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 122, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-blue);
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
 
-            .notification-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">EHE Community Studios</a>
+            <div class="nav-header">
+                <a href="#" class="logo" data-testid="logo">EHE Community Studios</a>
+            </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Startseite</a></li>
-                <li><a href="#datenschutz" class="nav-link">Datenschutz</a></li>
-                <li><a href="#sicherheit" class="nav-link">Sicherheit</a></li>
-                <li><a href="#unternehmen" class="nav-link">Unternehmen</a></li>
-                <li><a href="#entwicklung" class="nav-link">Entwicklung</a></li>
-                <li><a href="#website" class="nav-link">Website & Content</a></li>
-                <li><a href="#nutzung" class="nav-link">Nutzungsbedingungen</a></li>
-                <li><a href="#jugendschutz" class="nav-link">Jugendschutz</a></li>
+                <li><a href="#home" class="nav-link active" data-testid="nav-home">🏠 Startseite</a></li>
+                <li><a href="#datenschutz" class="nav-link" data-testid="nav-privacy">🔒 Datenschutz</a></li>
+                <li><a href="#sicherheit" class="nav-link" data-testid="nav-security">🛡️ Sicherheit</a></li>
+                <li><a href="#community" class="nav-link" data-testid="nav-community">👥 Community</a></li>
+                <li><a href="#unternehmen" class="nav-link" data-testid="nav-company">🏢 Unternehmen</a></li>
+                <li><a href="#entwicklung" class="nav-link" data-testid="nav-development">💻 Entwicklung</a></li>
+                <li><a href="#website" class="nav-link" data-testid="nav-website">🌐 Website</a></li>
+                <li><a href="#nutzung" class="nav-link" data-testid="nav-terms">📋 Nutzung</a></li>
+                <li><a href="#jugendschutz" class="nav-link" data-testid="nav-youth">🧒 Jugendschutz</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main>
         <div class="container">
             <!-- Home Section -->
             <section id="home" class="section active">
                 <div class="section-header">
-                    <h1>Willkommen bei EHE Community Webseiten Studios</h1>
-                    <p>Ihre zentrale Anlaufstelle für alle Richtlinien und Bestimmungen</p>
+                    <h1 data-testid="home-title">Willkommen bei EHE Community Studios</h1>
+                    <p>Moderne Richtlinien für eine sichere und respektvolle Community</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Übersicht der Richtlinien</h2>
-                    <p>Um eine sichere und respektvolle Community-Umgebung zu gewährleisten, haben wir umfassende Richtlinien entwickelt. Diese Richtlinien sind für alle Nutzer bindend und müssen vor der Nutzung unserer Dienste akzeptiert werden.</p>
+                <div class="glass-card" data-testid="overview-card">
+                    <h2>📌 Übersicht der Richtlinien</h2>
+                    <p>Um eine sichere, respektvolle und innovative Community-Umgebung zu gewährleisten, haben wir umfassende und moderne Richtlinien entwickelt. Diese Richtlinien sind für alle Nutzer verbindlich und müssen vor der Nutzung unserer Dienste akzeptiert werden.</p>
                     
-                    <h3>Verfügbare Richtlinien:</h3>
+                    <h3>📚 Verfügbare Richtlinien:</h3>
                     <ul>
-                        <li><strong>Datenschutzrichtlinien:</strong> Informationen zum Umgang mit Ihren persönlichen Daten</li>
-                        <li><strong>Sicherheitsrichtlinien:</strong> Maßnahmen zum Schutz der Community</li>
-                        <li><strong>Unternehmensrichtlinien:</strong> Allgemeine Geschäftsbedingungen</li>
-                        <li><strong>Programmier- und Entwicklungsrichtlinien:</strong> Standards für Entwicklungsarbeiten</li>
-                        <li><strong>Website- und Content-Richtlinien:</strong> Regeln für Inhalte und Gestaltung</li>
-                        <li><strong>Nutzungsbedingungen:</strong> Allgemeine Nutzungsbestimmungen</li>
-                        <li><strong>Jugendschutzrichtlinien:</strong> Schutzmaßnahmen für minderjährige Nutzer</li>
+                        <li><strong>Datenschutzrichtlinien:</strong> DSGVO-konforme Informationen zum Umgang mit persönlichen Daten</li>
+                        <li><strong>Sicherheitsrichtlinien:</strong> Moderne Schutzmaßnahmen und Best Practices</li>
+                        <li><strong>Community-Verhaltensrichtlinien:</strong> Regeln für respektvollen Umgang und Konfliktlösung</li>
+                        <li><strong>Unternehmensrichtlinien:</strong> Geschäftsbedingungen und Unternehmenswerte</li>
+                        <li><strong>Entwicklungsrichtlinien:</strong> Standards für moderne Softwareentwicklung</li>
+                        <li><strong>Website- und Content-Richtlinien:</strong> Regeln für Inhalte und barrierefreie Gestaltung</li>
+                        <li><strong>Nutzungsbedingungen:</strong> Rechte, Pflichten und Sanktionsmaßnahmen</li>
+                        <li><strong>Jugendschutzrichtlinien:</strong> Erweiterte Schutzmaßnahmen für Minderjährige</li>
                     </ul>
-                
-<div class="content-card">
-    <h2>Weitere Hinweise zu den Richtlinien</h2>
-    <h3>Erlaubt:</h3>
-    <ul>
-        <li>Respektvoller und höflicher Umgangston</li>
-        <li>Hilfreiches Feedback und konstruktive Kritik</li>
-        <li>Teilen von kreativen und informativen Inhalten</li>
-        <li>Meldung von Regelverstößen an das Team</li>
-    </ul>
-
-    <h3>Verboten:</h3>
-    <ul>
-        <li>Beleidigungen, Mobbing oder Diskriminierung jeglicher Art</li>
-        <li>Veröffentlichung sensibler Daten anderer Personen (Doxxing)</li>
-        <li>Ausnutzung technischer Schwachstellen</li>
-        <li>Verbreitung von Falschinformationen oder Fake-News</li>
-        <li>Jegliche Form von Spam oder Massenwerbung</li>
-        <li>Nachahmung von Teammitgliedern oder Moderatoren</li>
-    </ul>
-</div>
-
-
-
-
-                
-            
-<div class="content-card">
-    <h2>Konto-Sperrungsübersicht</h2>
-    <p>Die Sperrung eines Kontos erfolgt in mehreren Stufen und richtet sich nach Art und Häufigkeit des Verstoßes:</p>
-
-    <h3>Gründe für Sperrung:</h3>
-    <ul>
-        <li>Wiederholte Regelverstöße trotz Verwarnungen</li>
-        <li>Schwere Verstöße gegen Sicherheits- oder Jugendschutzrichtlinien</li>
-        <li>Verbreitung illegaler Inhalte oder Aufruf zu Gewalt</li>
-        <li>Technische Angriffe (DDoS, Exploits, etc.) auf unsere Plattform</li>
-        <li>Fälschung oder Missbrauch von Identitäten</li>
-    </ul>
-
-    <h3>Sperrdauer:</h3>
-    <ul>
-        <li><strong>Stufe 1:</strong> Verwarnung oder Sperre von 1–7 Tagen</li>
-        <li><strong>Stufe 2:</strong> Temporäre Sperre 1–6 Monate</li>
-        <li><strong>Stufe 3:</strong> Temporäre Sperre bis zu 2 Jahre</li>
-        <li><strong>Stufe 4:</strong> Permanente Kontosperre</li>
-    </ul>
-</div>
-
-<div class="content-card">
-    <h2>Anfrage & Widerspruch bei Sperrung oder Löschung</h2>
-    <p>Nutzer haben das Recht auf eine faire Behandlung bei Konto-Einschränkungen.</p>
-    <ul>
-        <li>Eine Anfrage zur Wiederherstellung oder Löschung des Kontos kann unter folgendem Link gestellt werden:<br>
-            <a href="https://roxyboy179.github.io/ehe_kontol-schung/" target="_blank">Antrag auf Kontowiederherstellung oder -löschung</a>
-        </li>
-        <li>Bei Unstimmigkeiten besteht die Möglichkeit zum Widerspruch:<br>
-            <a href="https://roxyboy179.github.io/ehe_wiederspruch/" target="_blank">Widerspruch einlegen</a>
-        </li>
-        <li>Nach Annahme der Anfrage durch das Server-Team wird die Projektleitung informiert und antwortet je nach Verfügbarkeit.</li>
-    </ul>
-</div>
-
-<div class="warning-box">
-    <h4>⚠️ Zusätzlicher Hinweis</h4>
-    <p>Bitte beachten Sie: Die Einhaltung der Richtlinien dient dem Schutz aller Nutzer. Verstöße können protokolliert und dauerhaft gespeichert werden.</p>
-</div><div class="warning-box">
-                    <h4>⚠️ Wichtiger Hinweis zu Verstößen</h4>
-                    <p>Nutzer, die gegen unsere Richtlinien verstoßen, können je nach Schwere und Anzahl der Verstöße mit einer Konto-Sperre belegt werden. Sperrungen können temporär (bis zu 30 Tage) oder dauerhaft erfolgen.</p>
                 </div>
-<div style="height: 2rem;"></div>
-</section>
 
-            <!-- Datenschutz Section -->
+                <div class="glass-card" data-testid="conduct-card">
+                    <h2>✅ Erlaubtes Verhalten</h2>
+                    <ul>
+                        <li>Respektvoller und höflicher Umgangston in allen Interaktionen</li>
+                        <li>Konstruktive Kritik und hilfreiches Feedback</li>
+                        <li>Teilen von kreativen, informativen und hilfreichen Inhalten</li>
+                        <li>Unterstützung anderer Community-Mitglieder</li>
+                        <li>Meldung von Regelverstößen an das Moderationsteam</li>
+                        <li>Aktive und positive Teilnahme an Diskussionen</li>
+                        <li>Respekt für verschiedene Meinungen und Perspektiven</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card" data-testid="forbidden-card">
+                    <h2>❌ Verbotenes Verhalten</h2>
+                    <ul>
+                        <li><strong>Beleidigungen & Hassrede:</strong> Diskriminierung aufgrund von Herkunft, Religion, Geschlecht, sexueller Orientierung oder anderen Merkmalen</li>
+                        <li><strong>Mobbing & Harassment:</strong> Systematische Belästigung, Stalking oder Einschüchterung</li>
+                        <li><strong>Doxxing:</strong> Veröffentlichung sensibler persönlicher Daten ohne Zustimmung</li>
+                        <li><strong>Trolling:</strong> Absichtliches Provozieren oder Stören von Diskussionen</li>
+                        <li><strong>Brigading:</strong> Koordinierte Angriffe oder Massenreporting gegen Nutzer</li>
+                        <li><strong>Spam:</strong> Massenwerbung, wiederholte identische Nachrichten</li>
+                        <li><strong>Impersonation:</strong> Nachahmung von Teammitgliedern oder anderen Nutzern</li>
+                        <li><strong>Manipulation:</strong> Verbreitung von Falschinformationen oder Fake-News</li>
+                        <li><strong>Technische Angriffe:</strong> Ausnutzung von Schwachstellen oder DDoS-Angriffe</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card" data-testid="sanctions-card">
+                    <h2>⚖️ Sanktionsübersicht</h2>
+                    <p>Verstöße gegen unsere Richtlinien werden ernst genommen und können zu folgenden Maßnahmen führen:</p>
+
+                    <div class="info-box">
+                        <h4>📊 Stufe 1 - Leichte Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Unbeabsichtigtes Spam, leicht unangemessene Sprache, einmalige Regelverletzung</p>
+                        <p><strong>Sanktion:</strong> Verwarnung oder temporäre Einschränkung (1-7 Tage)</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Stufe 2 - Mittlere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Wiederholte Verstöße, absichtliches Trolling, Beleidigungen</p>
+                        <p><strong>Sanktion:</strong> Temporäre Sperre (1-6 Monate), Löschung von Inhalten</p>
+                    </div>
+
+                    <div class="error-box">
+                        <h4>🚫 Stufe 3 - Schwere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Hassrede, Doxxing, Brigading, systematisches Mobbing</p>
+                        <p><strong>Sanktion:</strong> Langfristige Sperre (6 Monate - 2 Jahre)</p>
+                    </div>
+
+                    <div class="error-box">
+                        <h4>⛔ Stufe 4 - Sehr schwere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Illegale Inhalte, Gewaltandrohungen, technische Angriffe, wiederholte schwere Verstöße</p>
+                        <p><strong>Sanktion:</strong> Permanente Kontosperre, ggf. rechtliche Schritte</p>
+                    </div>
+                </div>
+
+                <div class="glass-card" data-testid="appeals-card">
+                    <h2>📝 Einspruch & Kontowiederherstellung</h2>
+                    <p>Wir glauben an faire Behandlung. Nutzer haben das Recht auf Einspruch bei Sanktionen:</p>
+                    <ul>
+                        <li><strong>Anfrage zur Kontowiederherstellung:</strong> 
+                            <a href="https://roxyboy179.github.io/ehe_kontol-schung/" target="_blank" style="color: var(--primary-blue);">Wiederherstellungsantrag stellen</a>
+                        </li>
+                        <li><strong>Widerspruch einlegen:</strong> 
+                            <a href="https://roxyboy179.github.io/ehe_wiederspruch/" target="_blank" style="color: var(--primary-blue);">Widerspruchsformular</a>
+                        </li>
+                        <li>Nach Einreichung prüft das Moderationsteam den Fall innerhalb von 7 Werktagen</li>
+                        <li>Bei komplexen Fällen wird die Projektleitung hinzugezogen</li>
+                        <li>Alle Entscheidungen werden schriftlich begründet</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Wichtiger Hinweis</h4>
+                    <p>Alle Verstöße werden dokumentiert und können dauerhaft gespeichert werden. Wiederholte Verstöße führen zu härteren Sanktionen. Die Einhaltung dieser Richtlinien dient dem Schutz aller Community-Mitglieder.</p>
+                </div>
+            </section>
+
+            <!-- Privacy Section -->
             <section id="datenschutz" class="section">
                 <div class="section-header">
-                    <h1>Datenschutzrichtlinien</h1>
-                    <p>Ihr Datenschutz ist uns wichtig</p>
+                    <h1 data-testid="privacy-title">🔒 Datenschutzrichtlinien</h1>
+                    <p>Ihr Datenschutz hat höchste Priorität</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Datenerhebung und -verarbeitung</h2>
-                    <p>Wir erheben und verarbeiten personenbezogene Daten nur im Rahmen der gesetzlichen Bestimmungen der DSGVO und anderer relevanter Datenschutzgesetze.</p>
+                <div class="glass-card">
+                    <h2>📊 Datenerhebung und -verarbeitung</h2>
+                    <p>Wir erheben und verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO und anderer relevanter Datenschutzgesetze. Transparenz und Kontrolle über Ihre Daten sind uns wichtig.</p>
                     
-                    <h3>Erhobene Daten:</h3>
+                    <h3>🔍 Welche Daten werden erhoben?</h3>
                     <ul>
-                        <li>Benutzername und Kontaktdaten</li>
-                        <li>Technische Daten (IP-Adresse, Browser-Informationen)</li>
-                        <li>Nutzungsverhalten auf unseren Plattformen</li>
-                        <li>Kommunikationsinhalte (Nachrichten, Posts)</li>
+                        <li><strong>Kontodaten:</strong> Benutzername, E-Mail-Adresse, Profilinformationen</li>
+                        <li><strong>Technische Daten:</strong> IP-Adresse, Browser-Typ, Gerätetyp, Betriebssystem</li>
+                        <li><strong>Nutzungsdaten:</strong> Besuchte Seiten, Interaktionen, Verweildauer</li>
+                        <li><strong>Kommunikationsdaten:</strong> Nachrichten, Posts, Kommentare, hochgeladene Inhalte</li>
+                        <li><strong>Cookies & Tracking:</strong> Session-Cookies, Analytics-Daten</li>
                     </ul>
 
-                    <h3>Verwendungszweck:</h3>
+                    <h3>🎯 Verwendungszweck der Daten</h3>
                     <ul>
-                        <li>Bereitstellung und Verbesserung unserer Dienste</li>
-                        <li>Kommunikation mit Nutzern</li>
-                        <li>Sicherstellung der Plattformsicherheit</li>
+                        <li>Bereitstellung und kontinuierliche Verbesserung unserer Dienste</li>
+                        <li>Personalisierung der Nutzererfahrung</li>
+                        <li>Kommunikation mit Nutzern (Support, Updates, Benachrichtigungen)</li>
+                        <li>Sicherstellung der Plattformsicherheit und Betrugsprävention</li>
+                        <li>Analyse und Optimierung der Website-Performance</li>
                         <li>Einhaltung gesetzlicher Verpflichtungen</li>
                     </ul>
+                </div>
 
-                    <h3>Ihre Rechte:</h3>
+                <div class="glass-card">
+                    <h2>🛡️ Datensicherheit</h2>
+                    <p>Wir setzen moderne Sicherheitsmaßnahmen ein, um Ihre Daten zu schützen:</p>
                     <ul>
-                        <li>Auskunft über gespeicherte Daten</li>
-                        <li>Berichtigung unrichtiger Daten</li>
-                        <li>Löschung von Daten</li>
-                        <li>Einschränkung der Verarbeitung</li>
-                        <li>Datenportabilität</li>
-                        <li>Widerspruch gegen die Verarbeitung</li>
+                        <li><strong>Verschlüsselung:</strong> SSL/TLS-Verschlüsselung für alle Datenübertragungen</li>
+                        <li><strong>Zugriffskontrolle:</strong> Strenge Zugriffsrechte und Authentifizierung</li>
+                        <li><strong>Regelmäßige Audits:</strong> Sicherheitsprüfungen und Penetrationstests</li>
+                        <li><strong>Datensparsamkeit:</strong> Nur notwendige Daten werden gespeichert</li>
+                        <li><strong>Sichere Server:</strong> Hosting in EU-Rechenzentren mit hohen Sicherheitsstandards</li>
                     </ul>
                 </div>
 
-                <div class="content-card">
-                    <h2>Cookies und Tracking</h2>
-                    <p>Wir verwenden Cookies und ähnliche Technologien zur Verbesserung der Nutzererfahrung. Sie können die Verwendung von Cookies in Ihren Browser-Einstellungen kontrollieren.</p>
+                <div class="glass-card">
+                    <h2>⚖️ Ihre Rechte gemäß DSGVO</h2>
+                    <ul>
+                        <li><strong>Auskunftsrecht:</strong> Erfahren Sie, welche Daten wir über Sie gespeichert haben</li>
+                        <li><strong>Berichtigungsrecht:</strong> Korrektur unrichtiger oder unvollständiger Daten</li>
+                        <li><strong>Löschungsrecht:</strong> Löschung Ihrer Daten unter bestimmten Bedingungen</li>
+                        <li><strong>Einschränkung der Verarbeitung:</strong> Einschränkung der Datenverarbeitung</li>
+                        <li><strong>Datenportabilität:</strong> Erhalt Ihrer Daten in einem gängigen Format</li>
+                        <li><strong>Widerspruchsrecht:</strong> Widerspruch gegen bestimmte Verarbeitungsformen</li>
+                        <li><strong>Widerruf der Einwilligung:</strong> Jederzeit widerrufbar für freiwillige Datenverarbeitung</li>
+                        <li><strong>Beschwerderecht:</strong> Beschwerde bei der zuständigen Datenschutzbehörde</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🍪 Cookies und Tracking-Technologien</h2>
+                    <h3>Verwendete Cookie-Typen:</h3>
+                    <ul>
+                        <li><strong>Notwendige Cookies:</strong> Erforderlich für Basisfunktionen (Session-Management, Sicherheit)</li>
+                        <li><strong>Funktionale Cookies:</strong> Speichern von Präferenzen und Einstellungen</li>
+                        <li><strong>Analytische Cookies:</strong> Analyse des Nutzerverhaltens zur Verbesserung</li>
+                        <li><strong>Marketing-Cookies:</strong> Nur mit ausdrücklicher Zustimmung</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <h4>💡 Cookie-Verwaltung</h4>
+                        <p>Sie können Cookies jederzeit in Ihren Browser-Einstellungen verwalten oder löschen. Bitte beachten Sie, dass die Deaktivierung bestimmter Cookies die Funktionalität der Website beeinträchtigen kann.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔄 Datenweitergabe an Dritte</h2>
+                    <p>Wir verkaufen Ihre Daten niemals. Eine Weitergabe erfolgt nur in folgenden Fällen:</p>
+                    <ul>
+                        <li><strong>Service-Provider:</strong> Hosting, E-Mail-Dienste, Analytics (mit Datenschutzvereinbarungen)</li>
+                        <li><strong>Gesetzliche Verpflichtungen:</strong> Behördliche Anfragen mit rechtlicher Grundlage</li>
+                        <li><strong>Ihre Zustimmung:</strong> Mit ausdrücklicher Einwilligung für spezifische Zwecke</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <h4>🌍 Datenübermittlung außerhalb der EU</h4>
+                        <p>Sollte eine Übermittlung in Drittländer notwendig sein, erfolgt dies nur mit angemessenen Garantien (z.B. EU-Standardvertragsklauseln).</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>⏱️ Datenspeicherung und Löschung</h2>
+                    <ul>
+                        <li><strong>Aktive Konten:</strong> Daten werden gespeichert, solange das Konto aktiv ist</li>
+                        <li><strong>Inaktive Konten:</strong> Löschung nach 24 Monaten Inaktivität (mit Vorankündigung)</li>
+                        <li><strong>Gesetzliche Aufbewahrungsfristen:</strong> Einige Daten müssen rechtlich verpflichtend gespeichert werden</li>
+                        <li><strong>Gelöschte Konten:</strong> Vollständige Löschung innerhalb von 30 Tagen (außer rechtliche Verpflichtungen)</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- Sicherheit Section -->
+            <!-- Security Section -->
             <section id="sicherheit" class="section">
                 <div class="section-header">
-                    <h1>Sicherheitsrichtlinien</h1>
-                    <p>Schutz unserer Community und Plattform</p>
+                    <h1 data-testid="security-title">🛡️ Sicherheitsrichtlinien</h1>
+                    <p>Moderne Sicherheitsmaßnahmen für Ihren Schutz</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Kontosicherheit</h2>
-                    <h3>Passwort-Anforderungen:</h3>
+                <div class="glass-card">
+                    <h2>🔐 Kontosicherheit</h2>
+                    <h3>Starke Passwort-Anforderungen:</h3>
                     <ul>
-                        <li>Mindestens 8 Zeichen</li>
-                        <li>Kombination aus Buchstaben, Zahlen und Sonderzeichen</li>
-                        <li>Regelmäßige Aktualisierung empfohlen</li>
-                        <li>Keine Weitergabe an Dritte</li>
+                        <li>Mindestens 12 Zeichen (empfohlen: 16+ Zeichen)</li>
+                        <li>Kombination aus Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen</li>
+                        <li>Keine Verwendung von persönlichen Informationen (Name, Geburtsdatum)</li>
+                        <li>Keine Wiederverwendung von Passwörtern anderer Dienste</li>
+                        <li>Regelmäßige Aktualisierung (alle 6 Monate empfohlen)</li>
+                        <li>Verwendung eines Passwort-Managers empfohlen</li>
                     </ul>
 
-                    <h3>Zwei-Faktor-Authentifizierung:</h3>
-                    <p>Wir empfehlen dringend die Aktivierung der Zwei-Faktor-Authentifizierung für zusätzliche Sicherheit.</p>
+                    <div class="success-box">
+                        <h4>✅ Passwort-Stärke-Checker</h4>
+                        <p>Nutzen Sie unseren integrierten Passwort-Stärke-Checker bei der Registrierung und Passwortänderung, um ein sicheres Passwort zu wählen.</p>
+                    </div>
                 </div>
 
-                <div class="content-card">
-                    <h2>Meldung von Sicherheitsvorfällen</h2>
-                    <p>Verdächtige Aktivitäten oder Sicherheitsvorfälle sollten umgehend gemeldet werden. Wir haben ein spezielles Team für die Bearbeitung von Sicherheitsmeldungen.</p>
+                <div class="glass-card">
+                    <h2>📱 Zwei-Faktor-Authentifizierung (2FA)</h2>
+                    <p>Wir empfehlen dringend die Aktivierung der Zwei-Faktor-Authentifizierung für zusätzliche Sicherheit.</p>
                     
-                    <h3>Was zu melden ist:</h3>
+                    <h3>Unterstützte 2FA-Methoden:</h3>
                     <ul>
-                        <li>Verdächtige Anmeldeversuche</li>
-                        <li>Phishing-Versuche</li>
-                        <li>Malware oder schädliche Inhalte</li>
-                        <li>Datenschutzverletzungen</li>
-                        <li>Missbrauch von Nutzerkonten</li>
+                        <li><strong>Authenticator-Apps:</strong> Google Authenticator, Authy, Microsoft Authenticator (empfohlen)</li>
+                        <li><strong>SMS-Code:</strong> Einmalcode per SMS (weniger sicher, aber besser als keine 2FA)</li>
+                        <li><strong>E-Mail-Code:</strong> Backup-Methode für den Notfall</li>
+                        <li><strong>Hardware-Token:</strong> FIDO2/WebAuthn-kompatible Sicherheitsschlüssel (höchste Sicherheit)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>🔑 Backup-Codes</h4>
+                        <p>Bei Aktivierung der 2FA erhalten Sie Backup-Codes. Bewahren Sie diese sicher auf, um bei Verlust Ihres 2FA-Geräts Zugriff zu behalten.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🚨 Sicherheitsvorfälle melden</h2>
+                    <p>Ihre Mithilfe ist wichtig für die Sicherheit der gesamten Community. Melden Sie verdächtige Aktivitäten umgehend!</p>
+                    
+                    <h3>Meldepflichtige Vorfälle:</h3>
+                    <ul>
+                        <li><strong>Verdächtige Anmeldeversuche:</strong> Unbekannte Login-Versuche oder Standorte</li>
+                        <li><strong>Phishing-Versuche:</strong> Betrügerische E-Mails oder Nachrichten</li>
+                        <li><strong>Malware:</strong> Schädliche Links oder Dateien in der Plattform</li>
+                        <li><strong>Account-Kompromittierung:</strong> Unbefugter Zugriff auf Ihr Konto</li>
+                        <li><strong>Datenschutzverletzungen:</strong> Unerlaubte Veröffentlichung persönlicher Daten</li>
+                        <li><strong>Sicherheitslücken:</strong> Technische Schwachstellen oder Exploits</li>
+                        <li><strong>Social Engineering:</strong> Manipulationsversuche</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>⏱️ Schnelle Reaktion erforderlich</h4>
+                        <p>Bei Sicherheitsvorfällen zählt jede Minute. Unser Security-Team ist 24/7 erreichbar und reagiert sofort auf kritische Meldungen.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔍 Sicherheits-Best-Practices</h2>
+                    <ul>
+                        <li><strong>Öffentliches WLAN:</strong> Vermeiden Sie sensible Aktivitäten in öffentlichen Netzwerken</li>
+                        <li><strong>Software-Updates:</strong> Halten Sie Browser und Betriebssystem aktuell</li>
+                        <li><strong>Phishing-Erkennung:</strong> Prüfen Sie Absender-Adressen und Links genau</li>
+                        <li><strong>Session-Management:</strong> Melden Sie sich auf öffentlichen Geräten immer ab</li>
+                        <li><strong>Verdächtige Links:</strong> Klicken Sie nicht auf unbekannte Links</li>
+                        <li><strong>Downloads:</strong> Laden Sie nur Dateien aus vertrauenswürdigen Quellen herunter</li>
+                        <li><strong>Persönliche Informationen:</strong> Teilen Sie keine sensiblen Daten öffentlich</li>
+                        <li><strong>Antivirus-Software:</strong> Verwenden Sie aktuelle Sicherheitssoftware</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🎯 Unser Sicherheitsversprechen</h2>
+                    <div class="success-box">
+                        <h4>✅ Unsere Verpflichtungen</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Regelmäßige Sicherheitsaudits durch externe Experten</li>
+                            <li>Sofortige Benachrichtigung bei Sicherheitsvorfällen</li>
+                            <li>Kontinuierliche Überwachung auf Bedrohungen</li>
+                            <li>Bug-Bounty-Programm für Sicherheitsforscher</li>
+                            <li>Transparente Kommunikation über Sicherheitsmaßnahmen</li>
+                            <li>Schnelle Reaktion auf gemeldete Schwachstellen</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Section (NEW) -->
+            <section id="community" class="section">
+                <div class="section-header">
+                    <h1 data-testid="community-title">👥 Community-Verhaltensrichtlinien</h1>
+                    <p>Zusammen eine positive und respektvolle Community aufbauen</p>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🤝 Grundprinzipien unserer Community</h2>
+                    <p>Unsere Community basiert auf gegenseitigem Respekt, Hilfsbereitschaft und konstruktivem Austausch. Jedes Mitglied trägt zur Atmosphäre bei.</p>
+                    
+                    <div class="success-box">
+                        <h4>✨ Unsere Werte</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li><strong>Respekt:</strong> Behandeln Sie andere so, wie Sie selbst behandelt werden möchten</li>
+                            <li><strong>Inklusivität:</strong> Jeder ist willkommen, unabhängig von Hintergrund oder Erfahrung</li>
+                            <li><strong>Hilfsbereitschaft:</strong> Unterstützen Sie andere Mitglieder aktiv</li>
+                            <li><strong>Konstruktivität:</strong> Tragen Sie positiv zu Diskussionen bei</li>
+                            <li><strong>Transparenz:</strong> Seien Sie ehrlich und authentisch</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🚫 Trolling - Definition und Konsequenzen</h2>
+                    <p>Trolling schadet der Community-Atmosphäre und wird nicht toleriert.</p>
+                    
+                    <h3>Was ist Trolling?</h3>
+                    <ul>
+                        <li><strong>Absichtliche Provokation:</strong> Gezielte Aussagen, um andere zu ärgern oder zu verärgern</li>
+                        <li><strong>Off-Topic-Spam:</strong> Wiederholtes Stören von Diskussionen mit irrelevanten Beiträgen</li>
+                        <li><strong>Flame-Baiting:</strong> Bewusstes Auslösen von Konflikten und Streitigkeiten</li>
+                        <li><strong>Concern Trolling:</strong> Vorgeben von Sorge, um Zwietracht zu säen</li>
+                        <li><strong>Derailing:</strong> Absichtliches Ablenken von wichtigen Diskussionen</li>
+                        <li><strong>Sea-Lioning:</strong> Ständiges Nachfragen mit vorgetäuschter Höflichkeit zur Belästigung</li>
+                    </ul>
+
+                    <div class="error-box">
+                        <h4>⚠️ Konsequenzen bei Trolling</h4>
+                        <p><strong>Erstes Vergehen:</strong> Verwarnung und Löschung der entsprechenden Beiträge</p>
+                        <p><strong>Wiederholtes Trolling:</strong> Temporäre Sperre (7-30 Tage)</p>
+                        <p><strong>Systematisches Trolling:</strong> Langfristige oder permanente Sperre</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🎯 Brigading - Koordinierte Angriffe</h2>
+                    <p>Brigading ist eine schwere Verletzung unserer Community-Richtlinien und wird mit harten Sanktionen geahndet.</p>
+                    
+                    <h3>Was ist Brigading?</h3>
+                    <ul>
+                        <li><strong>Koordiniertes Massenreporting:</strong> Gemeinsame Meldung von Inhalten oder Nutzern ohne legitimen Grund</li>
+                        <li><strong>Raid-Angriffe:</strong> Gemeinsames Überschwemmen von Diskussionen oder Bereichen</li>
+                        <li><strong>Vote Manipulation:</strong> Koordiniertes Up- oder Downvoting zur Manipulation</li>
+                        <li><strong>Externe Mobilisierung:</strong> Aufrufe in anderen Plattformen zu koordinierten Aktionen</li>
+                        <li><strong>Massenbelästigung:</strong> Gemeinsames Belästigen einzelner Nutzer</li>
+                    </ul>
+
+                    <div class="error-box">
+                        <h4>🚨 Strenge Sanktionen</h4>
+                        <p><strong>Teilnahme an Brigading:</strong> Sofortige temporäre Sperre (30-90 Tage)</p>
+                        <p><strong>Organisation von Brigading:</strong> Permanente Sperre ohne Widerspruchsmöglichkeit</p>
+                        <p><strong>Wiederholte Teilnahme:</strong> Permanente Sperre aller zugehörigen Konten</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>💬 Konstruktive Kommunikation</h2>
+                    <p>Effektive und respektvolle Kommunikation ist der Schlüssel zu einer gesunden Community.</p>
+                    
+                    <h3>Best Practices für Diskussionen:</h3>
+                    <ul>
+                        <li><strong>Sachlich bleiben:</strong> Argumentieren Sie mit Fakten, nicht mit Emotionen</li>
+                        <li><strong>Aktiv zuhören:</strong> Versuchen Sie, andere Perspektiven zu verstehen</li>
+                        <li><strong>Höflich widersprechen:</strong> "Ich sehe das anders, weil..." statt "Du liegst falsch!"</li>
+                        <li><strong>Quellen angeben:</strong> Untermauern Sie Behauptungen mit vertrauenswürdigen Quellen</li>
+                        <li><strong>Fehler zugeben:</strong> Es ist okay, sich zu irren und dazuzulernen</li>
+                        <li><strong>Persönliche Angriffe vermeiden:</strong> Kritisieren Sie Ideen, nicht Personen</li>
+                        <li><strong>Pause einlegen:</strong> Bei Frustration lieber eine Pause machen</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>💡 Konfliktdeeskalation</h4>
+                        <p>Wenn eine Diskussion hitzig wird: Bleiben Sie ruhig, fokussieren Sie sich auf das Thema, und scheuen Sie sich nicht, einen Moderator hinzuzuziehen.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🎭 Umgang mit Meinungsverschiedenheiten</h2>
+                    <ul>
+                        <li><strong>Meinungsvielfalt respektieren:</strong> Verschiedene Ansichten sind wertvoll</li>
+                        <li><strong>Nicht persönlich nehmen:</strong> Sachliche Kritik ist keine persönliche Beleidigung</li>
+                        <li><strong>Gemeinsamen Boden finden:</strong> Suchen Sie nach Gemeinsamkeiten</li>
+                        <li><strong>Agree to disagree:</strong> Man muss nicht immer einer Meinung sein</li>
+                        <li><strong>Moderatoren einbeziehen:</strong> Bei unlösbaren Konflikten helfen Mods</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔍 Inhaltsmoderation durch die Community</h2>
+                    <p>Jedes Community-Mitglied kann zur Moderation beitragen.</p>
+                    
+                    <h3>Wie Sie helfen können:</h3>
+                    <ul>
+                        <li><strong>Regelverstoße melden:</strong> Nutzen Sie die Report-Funktion bei Verstößen</li>
+                        <li><strong>Deeskalieren:</strong> Helfen Sie, Konflikte zu entschärfen</li>
+                        <li><strong>Positive Beiträge fördern:</strong> Upvoten und unterstützen Sie gute Inhalte</li>
+                        <li><strong>Neulinge unterstützen:</strong> Helfen Sie neuen Mitgliedern, sich zurechtzufinden</li>
+                        <li><strong>Konstruktives Feedback:</strong> Geben Sie hilfreiche Rückmeldungen</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Kein Vigilantismus</h4>
+                        <p>Überlassen Sie Sanktionen dem Moderationsteam. Eigenmächtiges "Bestrafen" oder öffentliches Anprangern ist nicht erlaubt und kann selbst zu Sanktionen führen.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🌟 Positive Community-Kultur fördern</h2>
+                    <ul>
+                        <li><strong>Willkommenskultur:</strong> Begrüßen Sie neue Mitglieder freundlich</li>
+                        <li><strong>Hilfsbereitschaft zeigen:</strong> Beantworten Sie Fragen und bieten Sie Unterstützung</li>
+                        <li><strong>Erfolge feiern:</strong> Gratulieren Sie anderen zu ihren Erfolgen</li>
+                        <li><strong>Positives Feedback:</strong> Loben Sie gute Beiträge und Ideen</li>
+                        <li><strong>Inklusiv sein:</strong> Achten Sie darauf, niemanden auszuschließen</li>
+                        <li><strong>Vorbild sein:</strong> Zeigen Sie das Verhalten, das Sie sehen möchten</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Unternehmen Section -->
+            <!-- Company Section -->
             <section id="unternehmen" class="section">
                 <div class="section-header">
-                    <h1>Unternehmensrichtlinien</h1>
-                    <p>Allgemeine Geschäftsbedingungen und Unternehmensgrundsätze</p>
+                    <h1 data-testid="company-title">🏢 Unternehmensrichtlinien</h1>
+                    <p>Geschäftsbedingungen und Unternehmenswerte</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Geschäftsbedingungen</h2>
-                    <p>Diese Geschäftsbedingungen regeln die Nutzung unserer Dienste und die Beziehung zwischen EHE Community Webseiten Studios und unseren Nutzern.</p>
+                <div class="glass-card">
+                    <h2>📜 Allgemeine Geschäftsbedingungen</h2>
+                    <p>Diese Geschäftsbedingungen regeln die Nutzung unserer Dienste und die vertragliche Beziehung zwischen EHE Community Studios und unseren Nutzern.</p>
                     
-                    <h3>Leistungsumfang:</h3>
+                    <h3>💼 Leistungsumfang:</h3>
                     <ul>
-                        <li>Webentwicklung und -design</li>
-                        <li>Community-Management</li>
-                        <li>Technischer Support</li>
-                        <li>Content-Erstellung</li>
+                        <li><strong>Webentwicklung:</strong> Moderne Full-Stack-Entwicklung mit neuesten Technologien</li>
+                        <li><strong>UI/UX Design:</strong> Barrierefreie und benutzerfreundliche Interfaces</li>
+                        <li><strong>Community-Management:</strong> Professionelle Betreuung und Moderation</li>
+                        <li><strong>Technischer Support:</strong> 24/7-Support für kritische Systeme</li>
+                        <li><strong>Content-Erstellung:</strong> Hochwertige Inhalte und Medien</li>
+                        <li><strong>Hosting & Infrastruktur:</strong> Sichere und skalierbare Server-Lösungen</li>
+                        <li><strong>Consulting:</strong> Beratung zu digitalen Strategien</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>⚖️ Haftung und Gewährleistung</h2>
+                    
+                    <h3>Haftungsausschluss:</h3>
+                    <ul>
+                        <li>EHE Community Studios haftet nicht für indirekte Schäden oder Folgeschäden</li>
+                        <li>Keine Haftung für Inhalte Dritter oder externe Links</li>
+                        <li>Keine Garantie für ununterbrochene Verfügbarkeit der Dienste</li>
+                        <li>Keine Haftung für Datenverlust bei höherer Gewalt</li>
                     </ul>
 
-                    <h3>Haftungsausschluss:</h3>
-                    <p>EHE Community Webseiten Studios haftet nicht für Schäden, die durch die Nutzung unserer Dienste entstehen, außer in Fällen von Vorsatz oder grober Fahrlässigkeit.</p>
+                    <h3>Haftung bei Vorsatz und grober Fahrlässigkeit:</h3>
+                    <ul>
+                        <li>Volle Haftung bei vorsätzlichen oder grob fahrlässigen Pflichtverletzungen</li>
+                        <li>Haftung für Schäden an Leben, Körper oder Gesundheit</li>
+                        <li>Haftung nach Produkthaftungsgesetz bleibt unberührt</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>⏱️ Service Level Agreement (SLA)</h4>
+                        <p><strong>Verfügbarkeit:</strong> 99,5% Uptime-Garantie (außer geplante Wartungen)</p>
+                        <p><strong>Support-Reaktionszeit:</strong> Kritische Issues innerhalb von 2 Stunden</p>
+                    </div>
                 </div>
 
-                <div class="content-card">
-                    <h2>Unternehmenswerte</h2>
+                <div class="glass-card">
+                    <h2>🎯 Unternehmenswerte</h2>
+                    <div class="success-box">
+                        <h4>💎 Unsere Prinzipien</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li><strong>Exzellenz:</strong> Wir streben nach höchster Qualität in allen Projekten</li>
+                            <li><strong>Innovation:</strong> Kontinuierliche Weiterentwicklung und Einsatz neuester Technologien</li>
+                            <li><strong>Transparenz:</strong> Offene und ehrliche Kommunikation mit allen Stakeholdern</li>
+                            <li><strong>Nachhaltigkeit:</strong> Umweltbewusste und ressourcenschonende Lösungen</li>
+                            <li><strong>Respekt:</strong> Wertschätzender Umgang mit Kunden, Partnern und Mitarbeitern</li>
+                            <li><strong>Sicherheit:</strong> Höchste Standards beim Schutz von Daten und Systemen</li>
+                            <li><strong>Community-First:</strong> Die Bedürfnisse unserer Community stehen im Mittelpunkt</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🤝 Vertragliche Vereinbarungen</h2>
+                    <h3>Vertragsabschluss:</h3>
                     <ul>
-                        <li><strong>Qualität:</strong> Wir streben nach höchster Qualität in allen unseren Projekten</li>
-                        <li><strong>Transparenz:</strong> Offene Kommunikation mit unseren Kunden und Partnern</li>
-                        <li><strong>Innovation:</strong> Kontinuierliche Weiterentwicklung unserer Technologien</li>
-                        <li><strong>Respekt:</strong> Respektvoller Umgang mit allen Stakeholdern</li>
+                        <li>Der Vertrag kommt durch Akzeptanz unserer AGB zustande</li>
+                        <li>Nutzung der Dienste setzt Volljährigkeit voraus (oder Zustimmung der Erziehungsberechtigten)</li>
+                        <li>Geschäftsfähigkeit wird vorausgesetzt</li>
+                    </ul>
+
+                    <h3>Vertragsdauer und Kündigung:</h3>
+                    <ul>
+                        <li>Kostenlose Accounts: Jederzeit kündbar ohne Fristen</li>
+                        <li>Premium-Accounts: Monatliche Kündigungsfrist zum Monatsende</li>
+                        <li>Außerordentliche Kündigung bei schweren Verstößen möglich</li>
+                        <li>Kündigung in Textform erforderlich (E-Mail ausreichend)</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>💰 Zahlungsbedingungen</h2>
+                    <ul>
+                        <li><strong>Kostenlose Dienste:</strong> Basisfunktionen sind kostenfrei</li>
+                        <li><strong>Premium-Features:</strong> Transparente Preisgestaltung, monatlich kündbar</li>
+                        <li><strong>Zahlungsmethoden:</strong> Kreditkarte, PayPal, SEPA-Lastschrift</li>
+                        <li><strong>Rechnungsstellung:</strong> Automatisch bei Zahlung per E-Mail</li>
+                        <li><strong>Rückerstattungen:</strong> 14-tägiges Widerrufsrecht für Neukunden</li>
+                        <li><strong>Preisänderungen:</strong> Mit 30 Tagen Vorlaufzeit angekündigt</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📞 Kontakt und Support</h2>
+                    <ul>
+                        <li><strong>E-Mail-Support:</strong> support@ehe-studios.de</li>
+                        <li><strong>Technischer Support:</strong> tech@ehe-studios.de</li>
+                        <li><strong>Rechtliche Anfragen:</strong> legal@ehe-studios.de</li>
+                        <li><strong>Discord:</strong> Roxyboy#2474</li>
+                        <li><strong>Reaktionszeit:</strong> Innerhalb von 48 Stunden (werktags)</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Entwicklung Section -->
+            <!-- Development Section -->
             <section id="entwicklung" class="section">
                 <div class="section-header">
-                    <h1>Programmier- und Entwicklungsrichtlinien</h1>
-                    <p>Standards für Entwicklungsarbeiten und Code-Qualität</p>
+                    <h1 data-testid="development-title">💻 Entwicklungsrichtlinien</h1>
+                    <p>Moderne Standards für professionelle Softwareentwicklung</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Code-Standards</h2>
+                <div class="glass-card">
+                    <h2>⚡ Code-Standards und Best Practices</h2>
+                    
                     <h3>Allgemeine Anforderungen:</h3>
                     <ul>
-                        <li>Sauberer, gut dokumentierter Code</li>
-                        <li>Einhaltung von Coding-Standards</li>
-                        <li>Regelmäßige Code-Reviews</li>
-                        <li>Verwendung von Versionskontrolle (Git)</li>
-                        <li>Automatisierte Tests</li>
-                    </ul>
-
-                    <h3>Sicherheitsaspekte:</h3>
-                    <ul>
-                        <li>Sichere Programmierungspraktiken</li>
-                        <li>Regelmäßige Sicherheitsupdates</li>
-                        <li>Verschlüsselung sensitiver Daten</li>
-                        <li>Eingabevalidierung</li>
-                        <li>Schutz vor gängigen Schwachstellen (OWASP Top 10)</li>
+                        <li><strong>Clean Code:</strong> Sauberer, lesbarer und wartbarer Code</li>
+                        <li><strong>SOLID-Prinzipien:</strong> Objektorientierte Design-Prinzipien einhalten</li>
+                        <li><strong>DRY (Don't Repeat Yourself):</strong> Redundanz vermeiden</li>
+                        <li><strong>KISS (Keep It Simple, Stupid):</strong> Einfache Lösungen bevorzugen</li>
+                        <li><strong>Code-Reviews:</strong> Peer-Reviews für alle Änderungen</li>
+                        <li><strong>Dokumentation:</strong> Inline-Kommentare und README-Dateien</li>
+                        <li><strong>Versionskontrolle:</strong> Git mit aussagekräftigen Commit-Messages</li>
                     </ul>
                 </div>
 
-                <div class="content-card">
-                    <h2>Entwicklungsprozess</h2>
-                    <h3>Projektphasen:</h3>
+                <div class="glass-card">
+                    <h2>🏗️ Architektur und Design</h2>
                     <ul>
-                        <li><strong>Planung:</strong> Anforderungsanalyse und Projektplanung</li>
-                        <li><strong>Design:</strong> UI/UX-Design und Architektur</li>
-                        <li><strong>Entwicklung:</strong> Implementierung nach Standards</li>
-                        <li><strong>Testing:</strong> Umfassende Qualitätssicherung</li>
-                        <li><strong>Deployment:</strong> Sichere Bereitstellung</li>
-                        <li><strong>Wartung:</strong> Laufende Unterstützung und Updates</li>
+                        <li><strong>Microservices:</strong> Modulare und skalierbare Architektur</li>
+                        <li><strong>API-First:</strong> RESTful APIs mit OpenAPI/Swagger-Dokumentation</li>
+                        <li><strong>Separation of Concerns:</strong> Klare Trennung von Logik, Präsentation und Daten</li>
+                        <li><strong>Responsive Design:</strong> Mobile-First-Ansatz</li>
+                        <li><strong>Progressive Web Apps:</strong> Moderne Web-Technologien nutzen</li>
+                        <li><strong>Accessibility:</strong> WCAG 2.1 Level AA als Mindeststandard</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔒 Sicherheit in der Entwicklung</h2>
+                    
+                    <h3>Security by Design:</h3>
+                    <ul>
+                        <li><strong>Input Validation:</strong> Alle Benutzereingaben validieren und sanitizen</li>
+                        <li><strong>Output Encoding:</strong> XSS-Prävention durch korrektes Encoding</li>
+                        <li><strong>SQL Injection Prevention:</strong> Prepared Statements verwenden</li>
+                        <li><strong>CSRF Protection:</strong> Anti-CSRF-Tokens für alle State-Changing Requests</li>
+                        <li><strong>Authentication & Authorization:</strong> Sichere Authentifizierung (OAuth 2.0, JWT)</li>
+                        <li><strong>Secrets Management:</strong> Keine Hardcoded Credentials, Environment Variables nutzen</li>
+                        <li><strong>HTTPS Only:</strong> Verschlüsselte Verbindungen erzwingen</li>
+                        <li><strong>Security Headers:</strong> CSP, HSTS, X-Frame-Options korrekt setzen</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>🔍 OWASP Top 10</h4>
+                        <p>Alle Entwickler müssen mit den OWASP Top 10 Sicherheitsrisiken vertraut sein und entsprechende Gegenmaßnahmen implementieren.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🧪 Testing und Qualitätssicherung</h2>
+                    
+                    <h3>Test-Pyramid:</h3>
+                    <ul>
+                        <li><strong>Unit Tests:</strong> Mindestens 80% Code Coverage für kritische Komponenten</li>
+                        <li><strong>Integration Tests:</strong> Testen von Komponenten-Interaktionen</li>
+                        <li><strong>End-to-End Tests:</strong> Automatisierte UI-Tests für kritische User Flows</li>
+                        <li><strong>Performance Tests:</strong> Load Testing und Stress Testing</li>
+                        <li><strong>Security Tests:</strong> Regelmäßige Penetrationstests</li>
+                        <li><strong>Accessibility Tests:</strong> Automatisierte und manuelle A11y-Tests</li>
+                    </ul>
+
+                    <h3>Continuous Integration/Deployment (CI/CD):</h3>
+                    <ul>
+                        <li>Automatisierte Test-Pipelines bei jedem Commit</li>
+                        <li>Automated Deployment zu Staging-Umgebung</li>
+                        <li>Manual Approval für Production-Deployments</li>
+                        <li>Rollback-Mechanismen für fehlerhafte Deployments</li>
+                        <li>Blue-Green oder Canary Deployments für Zero-Downtime</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📚 Entwicklungsprozess</h2>
+                    
+                    <h3>Agile Methodik:</h3>
+                    <ul>
+                        <li><strong>Sprints:</strong> 2-wöchige Entwicklungszyklen</li>
+                        <li><strong>Daily Standups:</strong> Tägliche Synchronisation des Teams</li>
+                        <li><strong>Sprint Planning:</strong> Gemeinsame Planung der User Stories</li>
+                        <li><strong>Sprint Review:</strong> Präsentation der Ergebnisse</li>
+                        <li><strong>Sprint Retrospective:</strong> Kontinuierliche Prozessverbesserung</li>
+                    </ul>
+
+                    <h3>Git-Workflow:</h3>
+                    <ul>
+                        <li><strong>Feature Branches:</strong> Separate Branches für jedes Feature</li>
+                        <li><strong>Pull Requests:</strong> Code-Review vor Merge in Main Branch</li>
+                        <li><strong>Commit Messages:</strong> Conventional Commits Format</li>
+                        <li><strong>Branch Protection:</strong> Main/Production Branches geschützt</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🚀 Performance-Optimierung</h2>
+                    <ul>
+                        <li><strong>Code Splitting:</strong> Lazy Loading von JavaScript-Modulen</li>
+                        <li><strong>Image Optimization:</strong> WebP-Format, responsive Bilder</li>
+                        <li><strong>Caching:</strong> Browser-Caching und CDN-Nutzung</li>
+                        <li><strong>Minification:</strong> Code-Minimierung für Production</li>
+                        <li><strong>Database Optimization:</strong> Indexierung und Query-Optimierung</li>
+                        <li><strong>Monitoring:</strong> Performance-Monitoring mit Tools wie Lighthouse</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>🎯 Performance-Ziele</h4>
+                        <p><strong>Lighthouse Score:</strong> Mindestens 90 in allen Kategorien</p>
+                        <p><strong>Time to Interactive:</strong> Unter 3 Sekunden</p>
+                        <p><strong>First Contentful Paint:</strong> Unter 1,5 Sekunden</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📱 Tech Stack</h2>
+                    
+                    <h3>Frontend:</h3>
+                    <ul>
+                        <li>React 18+ mit TypeScript</li>
+                        <li>Next.js für Server-Side Rendering</li>
+                        <li>Tailwind CSS für Styling</li>
+                        <li>Redux oder Zustand für State Management</li>
+                    </ul>
+
+                    <h3>Backend:</h3>
+                    <ul>
+                        <li>Node.js mit Express oder FastAPI (Python)</li>
+                        <li>PostgreSQL oder MongoDB als Datenbank</li>
+                        <li>Redis für Caching</li>
+                        <li>Docker für Containerisierung</li>
+                    </ul>
+
+                    <h3>DevOps:</h3>
+                    <ul>
+                        <li>GitHub Actions für CI/CD</li>
+                        <li>Kubernetes für Orchestrierung</li>
+                        <li>Prometheus & Grafana für Monitoring</li>
+                        <li>ELK Stack für Logging</li>
                     </ul>
                 </div>
             </section>
@@ -850,158 +1337,516 @@
             <!-- Website Section -->
             <section id="website" class="section">
                 <div class="section-header">
-                    <h1>Website- und Content-Richtlinien</h1>
-                    <p>Regeln für Inhalte und Gestaltung</p>
+                    <h1 data-testid="website-title">🌐 Website- und Content-Richtlinien</h1>
+                    <p>Standards für Inhalte, Design und Barrierefreiheit</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Content-Standards</h2>
-                    <h3>Erlaubte Inhalte:</h3>
+                <div class="glass-card">
+                    <h2>✅ Erlaubte Inhalte</h2>
                     <ul>
-                        <li>Respektvolle und konstruktive Diskussionen</li>
-                        <li>Hilfreiche Informationen und Tutorials</li>
-                        <li>Kreative Werke und Projekte</li>
-                        <li>Feedback und Verbesserungsvorschläge</li>
-                    </ul>
-
-                    <h3>Verbotene Inhalte:</h3>
-                    <ul>
-                        <li>Hassrede und Diskriminierung</li>
-                        <li>Belästigung und Mobbing</li>
-                        <li>Spam und unerwünschte Werbung</li>
-                        <li>Urheberrechtsverletzungen</li>
-                        <li>Gewaltverherrlichung</li>
-                        <li>Pornographische oder sexuell explizite Inhalte</li>
-                        <li>Illegale Aktivitäten</li>
+                        <li><strong>Respektvolle Diskussionen:</strong> Konstruktive und sachliche Gespräche</li>
+                        <li><strong>Hilfreiche Informationen:</strong> Tutorials, Guides, How-Tos</li>
+                        <li><strong>Kreative Werke:</strong> Eigene Projekte, Designs, Kunst (mit Urheberrecht)</li>
+                        <li><strong>Feedback:</strong> Konstruktive Kritik und Verbesserungsvorschläge</li>
+                        <li><strong>Fragen & Antworten:</strong> Hilfe suchen und geben</li>
+                        <li><strong>News & Updates:</strong> Relevante Nachrichten aus der Tech-Welt</li>
+                        <li><strong>Events:</strong> Ankündigungen von Community-Events</li>
                     </ul>
                 </div>
 
-                <div class="content-card">
-                    <h2>Design-Richtlinien</h2>
-                    <h3>Barrierefreiheit:</h3>
+                <div class="glass-card">
+                    <h2>🚫 Verbotene Inhalte</h2>
+                    
+                    <h3>Kategorie 1: Illegale Inhalte (Sofortige permanente Sperre)</h3>
                     <ul>
-                        <li>WCAG 2.1 AA-Konformität</li>
-                        <li>Ausreichende Farbkontraste</li>
-                        <li>Tastaturnavigation</li>
-                        <li>Alternative Texte für Bilder</li>
-                        <li>Responsive Design</li>
+                        <li>Kinderpornografie oder Darstellung von Minderjährigen in sexuellen Kontexten</li>
+                        <li>Gewaltverherrlichung oder Anleitungen zu Straftaten</li>
+                        <li>Terroristische Inhalte oder Extremismus</li>
+                        <li>Verkauf illegaler Waren oder Dienstleistungen</li>
+                        <li>Urheberrechtsverletzungen (Piraterie, illegale Downloads)</li>
                     </ul>
 
-                    <h3>Performance:</h3>
+                    <h3>Kategorie 2: Schädliche Inhalte (Schwere Verstöße)</h3>
                     <ul>
-                        <li>Schnelle Ladezeiten</li>
-                        <li>Optimierte Bilder und Medien</li>
-                        <li>Minimierter Code</li>
-                        <li>Caching-Strategien</li>
+                        <li>Hassrede und Diskriminierung jeglicher Art</li>
+                        <li>Belästigung, Mobbing und Stalking</li>
+                        <li>Doxxing (Veröffentlichung privater Informationen)</li>
+                        <li>Gewaltdarstellungen oder Gore</li>
+                        <li>Pornografische oder sexuell explizite Inhalte</li>
+                        <li>Selbstverletzendes Verhalten oder Suizidförderung</li>
+                    </ul>
+
+                    <h3>Kategorie 3: Störende Inhalte (Mittlere Verstöße)</h3>
+                    <ul>
+                        <li>Spam und unerwünschte Massenwerbung</li>
+                        <li>Clickbait und irreführende Titel</li>
+                        <li>Fehlinformationen und Fake News</li>
+                        <li>Off-Topic-Posts in falschen Kategorien</li>
+                        <li>Übermäßige Eigenwerbung</li>
+                    </ul>
+
+                    <div class="error-box">
+                        <h4>⚠️ Zero-Tolerance-Policy</h4>
+                        <p>Für illegale Inhalte (Kategorie 1) gilt eine Zero-Tolerance-Policy. Solche Verstöße führen zur sofortigen permanenten Sperre ohne Vorwarnung und werden den Behörden gemeldet.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🎨 Design-Richtlinien</h2>
+                    
+                    <h3>Barrierefreiheit (Accessibility):</h3>
+                    <ul>
+                        <li><strong>WCAG 2.1 Level AA:</strong> Mindeststandard für alle Inhalte</li>
+                        <li><strong>Semantisches HTML:</strong> Korrekte Verwendung von HTML-Tags</li>
+                        <li><strong>Farbkontraste:</strong> Mindestens 4.5:1 für normalen Text, 3:1 für großen Text</li>
+                        <li><strong>Alt-Texte:</strong> Beschreibende Alternative für alle Bilder</li>
+                        <li><strong>Tastaturnavigation:</strong> Alle Funktionen per Tastatur erreichbar</li>
+                        <li><strong>Screen Reader:</strong> Optimierung für Screenreader-Software</li>
+                        <li><strong>ARIA-Labels:</strong> Verwendung von ARIA für dynamische Inhalte</li>
+                        <li><strong>Fokus-Indikatoren:</strong> Klare visuelle Fokus-Markierungen</li>
+                        <li><strong>Responsive Text:</strong> Skalierbar bis 200% ohne Layout-Bruch</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>♿ Barrierefreiheit ist nicht optional</h4>
+                        <p>Barrierefreiheit ist ein Grundrecht. Alle neuen Features müssen von Anfang an barrierefrei gestaltet werden, nicht nachträglich.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>⚡ Performance-Standards</h2>
+                    <ul>
+                        <li><strong>Ladezeit:</strong> First Contentful Paint unter 1,5 Sekunden</li>
+                        <li><strong>Bildoptimierung:</strong> WebP-Format, max. 500KB pro Bild</li>
+                        <li><strong>Code-Minimierung:</strong> Minifiziertes CSS und JavaScript</li>
+                        <li><strong>Lazy Loading:</strong> Verzögertes Laden von Off-Screen-Inhalten</li>
+                        <li><strong>Caching:</strong> Effektive Browser-Caching-Strategien</li>
+                        <li><strong>CDN:</strong> Content Delivery Network für statische Ressourcen</li>
+                        <li><strong>Mobile Performance:</strong> Optimiert für 3G-Verbindungen</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📝 Content-Qualitätsstandards</h2>
+                    
+                    <h3>Textinhalte:</h3>
+                    <ul>
+                        <li><strong>Rechtschreibung & Grammatik:</strong> Fehlerfreie deutsche Texte</li>
+                        <li><strong>Lesbarkeit:</strong> Einfache Sprache, kurze Sätze</li>
+                        <li><strong>Struktur:</strong> Überschriften, Absätze, Listen für Lesbarkeit</li>
+                        <li><strong>Quellenangaben:</strong> Externe Quellen korrekt zitieren</li>
+                        <li><strong>Aktualität:</strong> Inhalte regelmäßig aktualisieren</li>
+                    </ul>
+
+                    <h3>Medieninhalte:</h3>
+                    <ul>
+                        <li><strong>Bildrechte:</strong> Nur eigene Bilder oder lizenzfreie Stockfotos</li>
+                        <li><strong>Videolänge:</strong> Tutorials max. 15 Minuten, Teasers max. 2 Minuten</li>
+                        <li><strong>Untertitel:</strong> Videos mit deutschen und englischen Untertiteln</li>
+                        <li><strong>Audioqualität:</strong> Klare Audioaufnahmen ohne Störgeräusche</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔍 SEO-Best-Practices</h2>
+                    <ul>
+                        <li><strong>Meta-Tags:</strong> Aussagekräftige Title und Description Tags</li>
+                        <li><strong>Strukturierte Daten:</strong> Schema.org Markup für bessere Indexierung</li>
+                        <li><strong>URLs:</strong> Sprechende, SEO-freundliche URLs</li>
+                        <li><strong>Interne Verlinkung:</strong> Sinnvolle Vernetzung von Inhalten</li>
+                        <li><strong>Mobile-Friendly:</strong> Responsive Design als Ranking-Faktor</li>
+                        <li><strong>Page Speed:</strong> Schnelle Ladezeiten verbessern Ranking</li>
+                        <li><strong>Sitemap:</strong> Aktuelle XML-Sitemap für Suchmaschinen</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🌍 Internationalisierung (i18n)</h2>
+                    <ul>
+                        <li><strong>Mehrsprachigkeit:</strong> Primär Deutsch, Englisch als Zweitsprache</li>
+                        <li><strong>Lokalisierung:</strong> Anpassung an regionale Besonderheiten</li>
+                        <li><strong>Datumsformate:</strong> Lokalisierte Datums- und Zeitangaben</li>
+                        <li><strong>Währungen:</strong> Korrekte Währungsdarstellung</li>
+                        <li><strong>Kulturelle Sensibilität:</strong> Respekt vor kulturellen Unterschieden</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Nutzung Section -->
+            <!-- Terms of Use Section -->
             <section id="nutzung" class="section">
                 <div class="section-header">
-                    <h1>Nutzungsbedingungen</h1>
-                    <p>Allgemeine Bestimmungen für die Nutzung unserer Dienste</p>
+                    <h1 data-testid="terms-title">📋 Nutzungsbedingungen</h1>
+                    <p>Rechte, Pflichten und Regelwerk für alle Nutzer</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Nutzungsrechte und -pflichten</h2>
-                    <h3>Erlaubte Nutzung:</h3>
+                <div class="glass-card">
+                    <h2>✅ Nutzungsrechte</h2>
+                    
+                    <h3>Was Sie dürfen:</h3>
                     <ul>
-                        <li>Persönliche und kommerzielle Nutzung nach Vereinbarung</li>
-                        <li>Teilen von Inhalten mit angemessener Quellenangabe</li>
-                        <li>Feedback und Verbesserungsvorschläge</li>
-                        <li>Teilnahme an Community-Diskussionen</li>
+                        <li><strong>Persönliche Nutzung:</strong> Kostenlose Nutzung aller Basisfunktionen</li>
+                        <li><strong>Kommerzielle Nutzung:</strong> Nach Abschluss einer entsprechenden Lizenzvereinbarung</li>
+                        <li><strong>Content-Sharing:</strong> Teilen von eigenen Inhalten mit der Community</li>
+                        <li><strong>API-Zugriff:</strong> Nutzung unserer öffentlichen APIs (mit Rate Limits)</li>
+                        <li><strong>Feedback geben:</strong> Verbesserungsvorschläge und Bug-Reports</li>
+                        <li><strong>Community-Teilnahme:</strong> Aktive Beteiligung an Diskussionen</li>
+                        <li><strong>Account-Export:</strong> Ihre Daten jederzeit exportieren</li>
                     </ul>
 
-                    <h3>Verbotene Nutzung:</h3>
+                    <div class="info-box">
+                        <h4>🔓 Open Source</h4>
+                        <p>Teile unserer Plattform sind Open Source. Die entsprechenden Repositories finden Sie auf unserem GitHub-Profil mit entsprechenden Lizenzen.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🚫 Verbotene Nutzung</h2>
                     <ul>
-                        <li>Reverse Engineering ohne Erlaubnis</li>
-                        <li>Verwendung für illegale Zwecke</li>
-                        <li>Überlastung der Server</li>
-                        <li>Umgehung von Sicherheitsmaßnahmen</li>
-                        <li>Erstellung von Fake-Accounts</li>
+                        <li><strong>Reverse Engineering:</strong> Dekompilierung oder Rückentwicklung ohne Erlaubnis</li>
+                        <li><strong>Automatisierung:</strong> Bots, Scraper oder automatisierte Zugriffe ohne Genehmigung</li>
+                        <li><strong>Missbrauch:</strong> Überlastung der Server oder DDoS-Angriffe</li>
+                        <li><strong>Umgehung:</strong> Deaktivierung oder Umgehung von Sicherheitsmaßnahmen</li>
+                        <li><strong>Fake-Accounts:</strong> Erstellung mehrerer Accounts zur Umgehung von Beschränkungen</li>
+                        <li><strong>Impersonation:</strong> Vorgeben, jemand anderes zu sein</li>
+                        <li><strong>Verkauf von Accounts:</strong> Handel mit Nutzerkonten</li>
+                        <li><strong>Illegal Activities:</strong> Nutzung für illegale Zwecke jeglicher Art</li>
+                    </ul>
+
+                    <div class="error-box">
+                        <h4>⚠️ Technischer Missbrauch</h4>
+                        <p>Technischer Missbrauch (DDoS, Hacking-Versuche, Exploit-Nutzung) führt zur sofortigen permanenten Sperre und wird rechtlich verfolgt.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>⚖️ Verstöße und Sanktionsmaßnahmen</h2>
+                    
+                    <h3>Abgestuftes Sanktionssystem:</h3>
+                    
+                    <div class="info-box">
+                        <h4>📊 Level 1: Leichte Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Einmaliges Spam, versehentliche Regelverletzung, unangemessene Sprache</p>
+                        <p><strong>Maßnahmen:</strong></p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Erste Verwarnung per E-Mail oder In-App-Nachricht</li>
+                            <li>Löschung der betreffenden Inhalte</li>
+                            <li>Kurze temporäre Einschränkung (1-7 Tage)</li>
+                            <li>Verpflichtende Durchsicht der Richtlinien</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Level 2: Mittlere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Wiederholtes Spam, absichtliches Trolling, Beleidigungen, leichte Hassrede</p>
+                        <p><strong>Maßnahmen:</strong></p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Temporäre Sperre: 7-30 Tage</li>
+                            <li>Löschung aller problematischen Inhalte</li>
+                            <li>Einschränkung von Funktionen (z.B. Posting, Messaging)</li>
+                            <li>Dokumentation im Nutzerprofil</li>
+                            <li>Bei zweitem Verstoß: Verlängerung auf 1-6 Monate</li>
+                        </ul>
+                    </div>
+
+                    <div class="error-box">
+                        <h4>🚫 Level 3: Schwere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Doxxing, systematisches Mobbing, Hassrede, Brigading, schwere Belästigung</p>
+                        <p><strong>Maßnahmen:</strong></p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Langfristige Sperre: 6 Monate bis 2 Jahre</li>
+                            <li>Vollständige Account-Einschränkung</li>
+                            <li>Benachrichtigung der Strafverfolgungsbehörden (bei illegalen Inhalten)</li>
+                            <li>Permanente Markierung im System</li>
+                            <li>Kein Recht auf vorzeitige Wiederherstellung</li>
+                        </ul>
+                    </div>
+
+                    <div class="error-box">
+                        <h4>⛔ Level 4: Sehr schwere Verstöße</h4>
+                        <p><strong>Beispiele:</strong> Illegale Inhalte, Gewaltandrohungen, CSAM, technische Angriffe, organisierte kriminelle Aktivitäten</p>
+                        <p><strong>Maßnahmen:</strong></p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Sofortige permanente Sperre ohne Vorwarnung</li>
+                            <li>IP-Bann und Geräte-Fingerprinting</li>
+                            <li>Sperrung aller zugehörigen Accounts</li>
+                            <li>Meldung an Strafverfolgungsbehörden</li>
+                            <li>Rechtliche Schritte (Strafanzeige, Zivilklage)</li>
+                            <li>Keine Möglichkeit der Wiedereinsetzung</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📢 Einspruchsverfahren</h2>
+                    <p>Wir glauben an faire Prozesse. Nutzer haben das Recht, gegen Sanktionen Einspruch zu erheben.</p>
+                    
+                    <h3>So funktioniert das Einspruchsverfahren:</h3>
+                    <ul>
+                        <li><strong>Schritt 1:</strong> Einspruch innerhalb von 30 Tagen über das offizielle Formular einreichen</li>
+                        <li><strong>Schritt 2:</strong> Automatische Bestätigung des Eingangs innerhalb von 24 Stunden</li>
+                        <li><strong>Schritt 3:</strong> Prüfung durch unabhängiges Moderationsteam (nicht der ursprüngliche Moderator)</li>
+                        <li><strong>Schritt 4:</strong> Entscheidung innerhalb von 7 Werktagen</li>
+                        <li><strong>Schritt 5:</strong> Schriftliche Begründung der Entscheidung</li>
+                        <li><strong>Schritt 6:</strong> Bei Ablehnung: Eskalation zur Projektleitung möglich</li>
+                    </ul>
+
+                    <div class="success-box">
+                        <h4>✅ Erfolgversprechende Einsprüche</h4>
+                        <p>Ein Einspruch hat bessere Erfolgschancen, wenn Sie:</p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Konkrete Beweise für ein Missverständnis vorlegen</li>
+                            <li>Zeigen, dass Kontext falsch interpretiert wurde</li>
+                            <li>Nachweisen, dass es sich um einen technischen Fehler handelte</li>
+                            <li>Darlegen, dass Ihr Account kompromittiert war</li>
+                        </ul>
+                    </div>
+
+                    <h3>Einspruch einreichen:</h3>
+                    <ul>
+                        <li><a href="https://roxyboy179.github.io/ehe_wiederspruch/" target="_blank" style="color: var(--primary-blue);">📝 Offizielles Widerspruchsformular</a></li>
+                        <li><a href="https://roxyboy179.github.io/ehe_kontol-schung/" target="_blank" style="color: var(--primary-blue);">🔓 Kontowiederherstellung beantragen</a></li>
                     </ul>
                 </div>
 
-                <div class="violation-level">
-                    <h4>Verstöße und Sanktionen</h4>
-                    <p><strong>Leichte Verstöße:</strong> Verwarnung, temporäre Einschränkungen (1-7 Tage)</p>
-                    <p><strong>Mittlere Verstöße:</strong> Temporäre Sperre (7-30 Tage), Löschung von Inhalten</p>
-                    <p><strong>Schwere Verstöße:</strong> Permanente Sperre, rechtliche Schritte</p>
+                <div class="glass-card">
+                    <h2>🔄 Account-Löschung und Datenportabilität</h2>
+                    
+                    <h3>Account-Löschung:</h3>
+                    <ul>
+                        <li><strong>Selbstständige Löschung:</strong> Jederzeit in den Account-Einstellungen möglich</li>
+                        <li><strong>Bedenkzeit:</strong> 30-tägige Karenzzeit, in der Wiederherstellung möglich ist</li>
+                        <li><strong>Vollständige Löschung:</strong> Nach Ablauf der Frist endgültige Löschung aller Daten</li>
+                        <li><strong>Aufbewahrungsfristen:</strong> Gesetzlich vorgeschriebene Daten werden entsprechend länger aufbewahrt</li>
+                    </ul>
+
+                    <h3>Datenexport:</h3>
+                    <ul>
+                        <li><strong>DSGVO-Recht:</strong> Sie haben jederzeit das Recht, Ihre Daten zu exportieren</li>
+                        <li><strong>Format:</strong> Export in maschinenlesbaren Formaten (JSON, CSV)</li>
+                        <li><strong>Umfang:</strong> Alle Ihre personenbezogenen Daten</li>
+                        <li><strong>Zeitrahmen:</strong> Export-Datei innerhalb von 48 Stunden verfügbar</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>📜 Änderungen der Nutzungsbedingungen</h2>
+                    <ul>
+                        <li>Wir behalten uns das Recht vor, diese Bedingungen zu ändern</li>
+                        <li>Wesentliche Änderungen werden 30 Tage im Voraus angekündigt</li>
+                        <li>Benachrichtigung erfolgt per E-Mail und In-App-Hinweis</li>
+                        <li>Fortgesetzte Nutzung nach Änderungen gilt als Zustimmung</li>
+                        <li>Bei Ablehnung: Recht auf Kündigung ohne Nachteile</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- Jugendschutz Section -->
+            <!-- Youth Protection Section -->
             <section id="jugendschutz" class="section">
                 <div class="section-header">
-                    <h1>Jugendschutzrichtlinien</h1>
-                    <p>Schutzmaßnahmen für minderjährige Nutzer</p>
+                    <h1 data-testid="youth-title">🧒 Jugendschutzrichtlinien</h1>
+                    <p>Erweiterte Schutzmaßnahmen für Minderjährige</p>
                 </div>
 
-                <div class="content-card">
-                    <h2>Altersverifikation</h2>
-                    <p>Nutzer unter 16 Jahren benötigen die Zustimmung ihrer Erziehungsberechtigten zur Nutzung unserer Dienste.</p>
+                <div class="glass-card">
+                    <h2>🔞 Altersverifikation und Zustimmung</h2>
                     
-                    <h3>Besondere Schutzmaßnahmen:</h3>
+                    <h3>Altersanforderungen:</h3>
                     <ul>
-                        <li>Erhöhte Moderation bei Minderjährigen</li>
-                        <li>Automatische Filterung problematischer Inhalte</li>
-                        <li>Eingeschränkte Kommunikationsmöglichkeiten</li>
-                        <li>Regelmäßige Überprüfung der Inhalte</li>
+                        <li><strong>Mindestalter:</strong> 13 Jahre (gemäß COPPA und DSGVO)</li>
+                        <li><strong>13-15 Jahre:</strong> Eingeschränkte Funktionen, erhöhte Moderation</li>
+                        <li><strong>16-17 Jahre:</strong> Erweiterte Funktionen mit Schutzmaßnahmen</li>
+                        <li><strong>Ab 18 Jahren:</strong> Volle Nutzung aller Features</li>
+                    </ul>
+
+                    <h3>Elterliche Zustimmung:</h3>
+                    <ul>
+                        <li><strong>Unter 16 Jahren:</strong> Zustimmung der Erziehungsberechtigten erforderlich</li>
+                        <li><strong>Verifizierung:</strong> E-Mail-Bestätigung durch Erziehungsberechtigte</li>
+                        <li><strong>Eltern-Dashboard:</strong> Überwachungsmöglichkeiten für Erziehungsberechtigte</li>
+                        <li><strong>Jederzeit widerrufbar:</strong> Eltern können Zustimmung zurückziehen</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>🛡️ Besonderer Schutz für Kinder</h4>
+                        <p>Wir nehmen den Schutz von Kindern und Jugendlichen sehr ernst. Alle minderjährigen Nutzer unterliegen erweiterten Schutzmaßnahmen und erhöhter Moderation.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🔒 Besondere Schutzmaßnahmen</h2>
+                    
+                    <h3>Technische Schutzmaßnahmen:</h3>
+                    <ul>
+                        <li><strong>Content-Filter:</strong> Automatische Filterung problematischer Inhalte</li>
+                        <li><strong>AI-Moderation:</strong> KI-gestützte Erkennung gefährdender Inhalte</li>
+                        <li><strong>Eingeschränkte Kontakte:</strong> Limitierte Kommunikation mit Erwachsenen</li>
+                        <li><strong>Privatssphäre-Einstellungen:</strong> Standardmäßig auf "Privat" gesetzt</li>
+                        <li><strong>Anonymisierung:</strong> Keine öffentliche Anzeige des echten Namens</li>
+                        <li><strong>Standort-Blockierung:</strong> Keine Standortfreigabe möglich</li>
+                        <li><strong>Download-Beschränkungen:</strong> Eingeschränkte Datei-Downloads</li>
+                    </ul>
+
+                    <h3>Erhöhte Moderation:</h3>
+                    <ul>
+                        <li><strong>Proaktive Überwachung:</strong> Regelmäßige Kontrolle von Interaktionen mit Minderjährigen</li>
+                        <li><strong>Schnellere Reaktion:</strong> Prioritäre Behandlung von Meldungen bezüglich Minderjähriger</li>
+                        <li><strong>Manuelle Reviews:</strong> Menschliche Überprüfung verdächtiger Aktivitäten</li>
+                        <li><strong>Pattern Detection:</strong> Erkennung von Grooming-Mustern</li>
                     </ul>
                 </div>
 
-                <div class="content-card">
-                    <h2>Meldung von Verstößen</h2>
-                    <p>Verdächtige Aktivitäten im Zusammenhang mit Minderjährigen werden mit höchster Priorität behandelt und können zu sofortigen Sperrungen führen.</p>
+                <div class="glass-card">
+                    <h2>⚠️ Sofort meldepflichtige Vorfälle</h2>
+                    <p>Folgende Vorfälle müssen SOFORT gemeldet werden und werden mit höchster Priorität behandelt:</p>
                     
-                    <h3>Sofort meldepflichtig:</h3>
+                    <div class="error-box">
+                        <h4>🚨 Notfall-Meldungen</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li><strong>Grooming:</strong> Versuch der Anbahnung sexueller Kontakte zu Minderjährigen</li>
+                            <li><strong>CSAM:</strong> Darstellung sexuellen Missbrauchs von Kindern (sofortige Strafanzeige)</li>
+                            <li><strong>Missbrauchsdrohungen:</strong> Androhung von Gewalt oder Missbrauch</li>
+                            <li><strong>Erpressung:</strong> Sextortion oder andere Erpressungsversuche</li>
+                            <li><strong>Identitätsabfrage:</strong> Versuch, persönliche Daten von Minderjährigen zu erlangen</li>
+                            <li><strong>Treffen-Anfragen:</strong> Aufforderungen zu Offline-Treffen</li>
+                            <li><strong>Cyber-Mobbing:</strong> Systematische Belästigung Minderjähriger</li>
+                            <li><strong>Selbstgefährdung:</strong> Androhung von Selbstverletzung oder Suizid</li>
+                        </ul>
+                    </div>
+
+                    <h3>Wie melden?</h3>
                     <ul>
-                        <li>Unangemessene Kontaktaufnahme zu Minderjährigen</li>
-                        <li>Versuch der Datenabfrage von Minderjährigen</li>
-                        <li>Verbreitung jugendgefährdender Inhalte</li>
-                        <li>Cyber-Mobbing</li>
+                        <li><strong>Notfall-Button:</strong> Roter "Melden"-Button in jeder Nachricht</li>
+                        <li><strong>24/7-Hotline:</strong> Spezielle Telefon-Hotline für Notfälle</li>
+                        <li><strong>E-Mail:</strong> safeguarding@ehe-studios.de (sofortige Bearbeitung)</li>
+                        <li><strong>Anonym möglich:</strong> Meldungen können anonym erfolgen</li>
                     </ul>
+
+                    <div class="warning-box">
+                        <h4>⏱️ Sofortige Reaktion</h4>
+                        <p>Notfallmeldungen bezüglich Minderjähriger werden innerhalb von Minuten bearbeitet. Bei unmittelbarer Gefahr kontaktieren wir unverzüglich die Polizei.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>👨‍👩‍👧 Eltern-Ressourcen</h2>
+                    
+                    <h3>Für Erziehungsberechtigte bieten wir:</h3>
+                    <ul>
+                        <li><strong>Eltern-Dashboard:</strong> Übersicht über Aktivitäten Ihres Kindes</li>
+                        <li><strong>Aktivitätsberichte:</strong> Wöchentliche Zusammenfassungen per E-Mail</li>
+                        <li><strong>Kontakt-Verwaltung:</strong> Genehmigung von Kontaktanfragen</li>
+                        <li><strong>Content-Einstellungen:</strong> Individuelle Filter-Anpassungen</li>
+                        <li><strong>Zeitlimits:</strong> Festlegung von Nutzungszeiten</li>
+                        <li><strong>Sofort-Sperre:</strong> Notfall-Button zur sofortigen Account-Sperrung</li>
+                        <li><strong>Beratung:</strong> Kostenlose Beratung durch Jugendschutzexperten</li>
+                    </ul>
+
+                    <div class="success-box">
+                        <h4>📚 Bildungsressourcen</h4>
+                        <p>Wir bieten umfangreiche Materialien für Eltern:</p>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Guide: "Online-Sicherheit für Kinder"</li>
+                            <li>Checklisten für sichere Internet-Nutzung</li>
+                            <li>Warnsignale für Cyber-Grooming erkennen</li>
+                            <li>Gesprächsleitfäden für Eltern-Kind-Gespräche</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🎓 Bildung und Prävention</h2>
+                    
+                    <h3>Für junge Nutzer:</h3>
+                    <ul>
+                        <li><strong>Interaktive Tutorials:</strong> Spielerisches Lernen über Online-Sicherheit</li>
+                        <li><strong>Altersgerechte Richtlinien:</strong> Vereinfachte Darstellung der Regeln</li>
+                        <li><strong>Cyber-Mobbing-Prävention:</strong> Workshops und Materialien</li>
+                        <li><strong>Digitale Kompetenz:</strong> Förderung von Medienkompetenz</li>
+                        <li><strong>Meldetraining:</strong> Wie und wann sollte ich etwas melden?</li>
+                    </ul>
+
+                    <h3>Community-Programme:</h3>
+                    <ul>
+                        <li><strong>Peer-Mentoring:</strong> Ältere Nutzer als Mentoren für Jüngere</li>
+                        <li><strong>Safe-Space-Bereiche:</strong> Spezielle Bereiche nur für Jugendliche</li>
+                        <li><strong>Moderierte Events:</strong> Veranstaltungen mit erhöhter Aufsicht</li>
+                        <li><strong>Jugendrat:</strong> Einbindung Jugendlicher in Entscheidungsprozesse</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <h2>🤝 Zusammenarbeit mit Behörden</h2>
+                    <p>Zum Schutz Minderjähriger arbeiten wir eng mit Behörden zusammen:</p>
+                    <ul>
+                        <li><strong>Jugendschutz-Beauftragte:</strong> Interne Stelle für Jugendschutzfragen</li>
+                        <li><strong>Polizei:</strong> Direkter Kontakt zu Cyber-Crime-Einheiten</li>
+                        <li><strong>Jugendämter:</strong> Kooperation bei Verdachtsfällen</li>
+                        <li><strong>NCMEC:</strong> Meldung an National Center for Missing & Exploited Children</li>
+                        <li><strong>FSM:</strong> Mitglied der Freiwilligen Selbstkontrolle Multimedia</li>
+                        <li><strong>Hotlines:</strong> Kooperation mit Internet-Beschwerdestellen</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>📞 Externe Hilfe</h4>
+                        <p><strong>Nummer gegen Kummer:</strong> 116 111 (kostenlos, anonym)</p>
+                        <p><strong>Hilfetelefon Sexueller Missbrauch:</strong> 0800 22 55 530</p>
+                        <p><strong>Polizei-Notruf:</strong> 110</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2>✅ Unser Jugendschutz-Versprechen</h2>
+                    <div class="success-box">
+                        <h4>🛡️ Unsere Verpflichtung</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Höchste Priorität für die Sicherheit von Kindern und Jugendlichen</li>
+                            <li>Null-Toleranz gegenüber jeglicher Form von Kindesmissbrauch</li>
+                            <li>Kontinuierliche Verbesserung der Schutzmaßnahmen</li>
+                            <li>Transparente Kommunikation mit Eltern und Erziehungsberechtigten</li>
+                            <li>Regelmäßige externe Audits unserer Jugendschutzmaßnahmen</li>
+                            <li>Schulung aller Moderatoren im Bereich Kinderschutz</li>
+                            <li>Proaktive statt reaktive Sicherheitsmaßnahmen</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>Erstellt von der EHE Community Webseiten Studios</p>
+        <p><strong>EHE Community Webseiten Studios</strong></p>
         <p>Projektinhaber: Roxyboy#2474 (Discord)</p>
         <p>Originalseite: <a href="https://roxyboy179.github.io/ehe-community2/" target="_blank">https://roxyboy179.github.io/ehe-community2/</a></p>
-        <p>&copy; 2024 EHE Community Webseiten Studios. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2025 EHE Community Studios. Alle Rechte vorbehalten.</p>
     </footer>
 
-    <!-- Notification System -->
+    <!-- Notification Container -->
     <div class="notification-container" id="notificationContainer"></div>
-    
-    <!-- Notification Test Button -->
-    <button class="notification-btn" id="notificationBtn" title="Test Benachrichtigungen">
-        🔔
-    </button>
 
     <!-- Acceptance Modal -->
     <div id="acceptanceModal" class="modal">
         <div class="modal-content">
-            <h2>Richtlinien-Zustimmung erforderlich</h2>
-            <p>Bevor Sie unsere Webseite und Community-Funktionen nutzen können, müssen Sie unseren Richtlinien ausdrücklich zustimmen.</p>
+            <h2>🔐 Richtlinien-Zustimmung erforderlich</h2>
+            <p>Bevor Sie unsere Webseite und Community-Funktionen nutzen können, müssen Sie unseren modernisierten Richtlinien ausdrücklich zustimmen.</p>
             <p><strong>Durch die Zustimmung erklären Sie sich mit folgenden Richtlinien einverstanden:</strong></p>
-            <ul style="text-align: left; margin: 1rem 0;">
-                <li>Datenschutzrichtlinien</li>
-                <li>Sicherheitsrichtlinien</li>
-                <li>Unternehmensrichtlinien</li>
-                <li>Programmier- und Entwicklungsrichtlinien</li>
-                <li>Website- und Content-Richtlinien</li>
-                <li>Nutzungsbedingungen</li>
-                <li>Jugendschutzrichtlinien</li>
+            <ul style="text-align: left; margin: 1.5rem 0;">
+                <li>✅ Datenschutzrichtlinien (DSGVO-konform)</li>
+                <li>✅ Sicherheitsrichtlinien</li>
+                <li>✅ Community-Verhaltensrichtlinien</li>
+                <li>✅ Unternehmensrichtlinien</li>
+                <li>✅ Entwicklungsrichtlinien</li>
+                <li>✅ Website- und Content-Richtlinien</li>
+                <li>✅ Nutzungsbedingungen</li>
+                <li>✅ Jugendschutzrichtlinien</li>
             </ul>
-            <p style="color: #ffc107; font-weight: bold;">⚠️ Hinweis: Verstöße gegen diese Richtlinien können zu temporären oder permanenten Kontosperrungen führen.</p>
-            <div style="margin-top: 2rem;">
-                <button id="acceptBtn" class="btn btn-primary">Ich stimme zu</button>
-                <button id="declineBtn" class="btn btn-secondary">Ablehnen</button>
+            <div class="warning-box" style="text-align: left;">
+                <h4>⚠️ Wichtiger Hinweis</h4>
+                <p>Verstöße gegen diese Richtlinien können zu temporären oder permanenten Kontosperrungen führen. Bei schweren Verstößen behalten wir uns rechtliche Schritte vor.</p>
+            </div>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button id="acceptBtn" class="btn btn-primary" data-testid="accept-btn">✅ Ich stimme zu</button>
+                <button id="declineBtn" class="btn btn-secondary" data-testid="decline-btn">❌ Ablehnen</button>
             </div>
         </div>
     </div>
@@ -1015,20 +1860,7 @@
                 this.maxNotifications = 5;
             }
 
-            // Create notification icons
-            getIcon(type) {
-                const icons = {
-                    success: `<svg class="notification-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`,
-                    error: `<svg class="notification-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>`,
-                    warning: `<svg class="notification-icon" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
-                    info: `<svg class="notification-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>`
-                };
-                return icons[type] || icons.info;
-            }
-
-            // Show notification
             show(title, message, type = 'info', duration = 5000) {
-                // Remove oldest notification if we have too many
                 if (this.notifications.length >= this.maxNotifications) {
                     this.remove(this.notifications[0]);
                 }
@@ -1039,35 +1871,30 @@
                 const notificationId = 'notification-' + Date.now();
                 notification.id = notificationId;
 
-                const currentTime = new Date().toLocaleTimeString('de-DE', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+                const icons = {
+                    success: '✅',
+                    error: '❌',
+                    warning: '⚠️',
+                    info: 'ℹ️'
+                };
 
                 notification.innerHTML = `
                     <div class="notification-header">
                         <div class="notification-title">
-                            ${this.getIcon(type)}
-                            ${title}
+                            ${icons[type] || icons.info} ${title}
                         </div>
-                        <button class="notification-close" onclick="notificationSystem.remove('${notificationId}')">&times;</button>
+                        <button class="notification-close" onclick="notificationSystem.remove('${notificationId}')" data-testid="notification-close-${notificationId}">×</button>
                     </div>
                     <div class="notification-body">${message}</div>
-                    <div class="notification-time">${currentTime}</div>
-                    <div class="notification-progress">
-                        <div class="notification-progress-bar"></div>
-                    </div>
                 `;
 
                 this.container.appendChild(notification);
                 this.notifications.push(notificationId);
 
-                // Show notification with animation
                 setTimeout(() => {
                     notification.classList.add('show');
                 }, 100);
 
-                // Auto remove after duration
                 if (duration > 0) {
                     setTimeout(() => {
                         this.remove(notificationId);
@@ -1077,7 +1904,6 @@
                 return notificationId;
             }
 
-            // Remove notification
             remove(notificationId) {
                 const notification = document.getElementById(notificationId);
                 if (notification) {
@@ -1089,38 +1915,26 @@
                 }
             }
 
-            // Remove all notifications
-            removeAll() {
-                this.notifications.forEach(id => {
-                    this.remove(id);
-                });
-            }
-
-            // Show success notification
             success(title, message, duration = 5000) {
                 return this.show(title, message, 'success', duration);
             }
 
-            // Show error notification
             error(title, message, duration = 7000) {
                 return this.show(title, message, 'error', duration);
             }
 
-            // Show warning notification
             warning(title, message, duration = 6000) {
                 return this.show(title, message, 'warning', duration);
             }
 
-            // Show info notification
             info(title, message, duration = 5000) {
                 return this.show(title, message, 'info', duration);
             }
         }
 
-        // Initialize notification system
         const notificationSystem = new NotificationSystem();
 
-        // Navigation functionality
+        // Main Application
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.section');
@@ -1128,38 +1942,41 @@
             const acceptBtn = document.getElementById('acceptBtn');
             const declineBtn = document.getElementById('declineBtn');
             const navbar = document.getElementById('navbar');
-            const notificationBtn = document.getElementById('notificationBtn');
+            const loader = document.getElementById('loader');
+
+            // Hide loader
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1500);
 
             // Welcome notification
             setTimeout(() => {
                 notificationSystem.info(
                     'Willkommen!',
-                    'Willkommen bei EHE Community Webseiten Studios. Bitte lesen Sie unsere Richtlinien sorgfältig durch.',
+                    'Willkommen bei EHE Community Studios. Entdecken Sie unsere modernisierten Richtlinien.',
                     8000
                 );
             }, 2000);
 
-            // Check if user has already accepted
-            const hasAccepted = localStorage.getItem('ehe_guidelines_accepted');
+            // Check acceptance
+            const hasAccepted = localStorage.getItem('ehe_guidelines_accepted_v2');
             if (!hasAccepted) {
-                modal.style.display = 'block';
                 setTimeout(() => {
-                    notificationSystem.warning(
-                        'Zustimmung erforderlich',
-                        'Sie müssen unseren Richtlinien zustimmen, um fortzufahren.',
-                        0
-                    );
-                }, 3000);
+                    modal.style.display = 'block';
+                }, 2500);
             }
 
             // Handle acceptance
             acceptBtn.addEventListener('click', function() {
-                localStorage.setItem('ehe_guidelines_accepted', 'true');
+                localStorage.setItem('ehe_guidelines_accepted_v2', 'true');
                 modal.style.display = 'none';
                 notificationSystem.success(
                     'Zustimmung erteilt',
                     'Vielen Dank! Sie können jetzt alle Funktionen nutzen.',
-                    4000
+                    5000
                 );
             });
 
@@ -1172,26 +1989,12 @@
                 );
             });
 
-            // Notification test button
-            notificationBtn.addEventListener('click', function() {
-                const notifications = [
-                    () => notificationSystem.success('Erfolgreich', 'Aktion wurde erfolgreich ausgeführt!'),
-                    () => notificationSystem.error('Fehler', 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'),
-                    () => notificationSystem.warning('Warnung', 'Bitte beachten Sie die Richtlinien beim Posten von Inhalten.'),
-                    () => notificationSystem.info('Information', 'Neue Updates sind verfügbar. Schauen Sie regelmäßig vorbei!'),
-                ];
-                
-                const randomNotification = notifications[Math.floor(Math.random() * notifications.length)];
-                randomNotification();
-            });
-
-            // Navigation functionality
+            // Navigation
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Check if user has accepted guidelines
-                    if (!localStorage.getItem('ehe_guidelines_accepted')) {
+                    if (!localStorage.getItem('ehe_guidelines_accepted_v2')) {
                         modal.style.display = 'block';
                         notificationSystem.warning(
                             'Zugriff verweigert',
@@ -1203,11 +2006,9 @@
                     
                     const targetId = this.getAttribute('href').substring(1);
                     
-                    // Update active nav link
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Show target section
                     sections.forEach(section => {
                         section.classList.remove('active');
                         if (section.id === targetId) {
@@ -1215,25 +2016,24 @@
                         }
                     });
                     
-                    // Show navigation notification
                     const sectionTitles = {
                         'home': 'Startseite',
-                        'datenschutz': 'Datenschutzrichtlinien',
-                        'sicherheit': 'Sicherheitsrichtlinien',
-                        'unternehmen': 'Unternehmensrichtlinien',
-                        'entwicklung': 'Entwicklungsrichtlinien',
-                        'website': 'Website-Richtlinien',
-                        'nutzung': 'Nutzungsbedingungen',
-                        'jugendschutz': 'Jugendschutzrichtlinien'
+                        'datenschutz': 'Datenschutz',
+                        'sicherheit': 'Sicherheit',
+                        'community': 'Community',
+                        'unternehmen': 'Unternehmen',
+                        'entwicklung': 'Entwicklung',
+                        'website': 'Website',
+                        'nutzung': 'Nutzung',
+                        'jugendschutz': 'Jugendschutz'
                     };
                     
                     notificationSystem.info(
                         'Navigation',
-                        `${sectionTitles[targetId]} wurde geladen.`,
+                        `${sectionTitles[targetId]} geladen.`,
                         3000
                     );
                     
-                    // Smooth scroll to top
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
@@ -1249,174 +2049,6 @@
                     navbar.classList.remove('scrolled');
                 }
             });
-
-            // Show violation warnings
-            setTimeout(() => {
-                const violationWarnings = [
-                    'Beachten Sie: Verstöße gegen die Richtlinien können zu Kontosperrungen führen.',
-                    'Tipp: Lesen Sie die Jugendschutzrichtlinien, wenn Sie mit Minderjährigen interagieren.',
-                    'Wichtig: Melden Sie verdächtige Aktivitäten umgehend an unser Support-Team.',
-                ];
-                
-                violationWarnings.forEach((warning, index) => {
-                    setTimeout(() => {
-                        notificationSystem.warning('Sicherheitshinweis', warning, 6000);
-                    }, (index + 1) * 15000);
-                });
-            }, 10000);
-
-            // Add entrance animation to sections
-            function animateSection(section) {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    section.style.transition = 'all 0.6s ease';
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, 100);
-            }
-
-            // Animate active section on load
-            const activeSection = document.querySelector('.section.active');
-            if (activeSection) {
-                animateSection(activeSection);
-            }
-
-            // Add hover effects to content cards
-            const contentCards = document.querySelectorAll('.content-card');
-            contentCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
-                    this.style.boxShadow = '0 15px 40px rgba(100, 181, 246, 0.2)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-                });
-            });
-
-            // Add dynamic background particles
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.style.position = 'fixed';
-                particle.style.width = '3px';
-                particle.style.height = '3px';
-                particle.style.backgroundColor = 'rgba(100, 181, 246, 0.3)';
-                particle.style.borderRadius = '50%';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '-1';
-                particle.style.left = Math.random() * window.innerWidth + 'px';
-                particle.style.top = '-10px';
-                particle.style.animation = 'particleFall 10s linear infinite';
-                
-                document.body.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                }, 10000);
-            }
-
-            // Add particle animation keyframes
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes particleFall {
-                    to {
-                        transform: translateY(100vh) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Create particles periodically
-            setInterval(createParticle, 3000);
-
-            // Add typing effect to main title
-            function typeWriter(element, text, speed = 50) {
-                let i = 0;
-                element.innerHTML = '';
-                
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    }
-                }
-                type();
-            }
-
-            // Apply typing effect to main title
-            const mainTitle = document.querySelector('.section-header h1');
-            if (mainTitle) {
-                const originalText = mainTitle.textContent;
-                setTimeout(() => {
-                    typeWriter(mainTitle, originalText, 80);
-                }, 500);
-            }
-
-            // Add pulse animation to warning boxes
-            const warningBoxes = document.querySelectorAll('.warning-box');
-            warningBoxes.forEach(box => {
-                setInterval(() => {
-                    box.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        box.style.transform = 'scale(1)';
-                    }, 200);
-                }, 5000);
-            });
-
-            // Add loading animation
-            function showLoadingAnimation() {
-                const loader = document.createElement('div');
-                loader.innerHTML = `
-                    <div style="
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0f0f0f 100%);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        z-index: 9999;
-                        opacity: 1;
-                        transition: opacity 0.5s ease;
-                    ">
-                        <div style="
-                            width: 50px;
-                            height: 50px;
-                            border: 3px solid rgba(100, 181, 246, 0.3);
-                            border-radius: 50%;
-                            border-top-color: #64b5f6;
-                            animation: spin 1s ease-in-out infinite;
-                        "></div>
-                    </div>
-                `;
-                
-                const spinStyle = document.createElement('style');
-                spinStyle.textContent = `
-                    @keyframes spin {
-                        to { transform: rotate(360deg); }
-                    }
-                `;
-                document.head.appendChild(spinStyle);
-                
-                document.body.appendChild(loader);
-                
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.remove();
-                    }, 500);
-                }, 1500);
-            }
-
-            // Show loading animation on page load
-            showLoadingAnimation();
         });
     </script>
 </body>
